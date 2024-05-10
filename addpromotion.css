@@ -1,0 +1,66 @@
+body {
+  font-family: 'Outfit', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #630808;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 200px;
+  background-color: #171A33;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  color: #B0B0B0;
+}
+
+.sidebar a:hover {
+  background-color: #171A33;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+  color: #ffff;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #00868D;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #00868D;
+}
+
