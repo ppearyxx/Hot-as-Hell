@@ -1,106 +1,134 @@
-<h2>Contact Info</h2>
-<label for="name">Name:</label>
-<input
-  type="text"
-  id="name"
-  name="name"
-  class="guestcontact-form"
-  required
-/><br />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hot As Hell</title>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+        <link rel="stylesheet" href="Navbar.css">
+        <link rel="stylesheet" href="guestcontact.css">
+    
+        <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+        <script src="/Navbar.js" type="text/javascript" defer></script>
+        
+    </head>
 
-<label for="surname">Surname:</label>
-<input
-  type="text"
-  id="surname"
-  name="surname"
-  class="guestcontact-form"
-  required
-/><br />
-
-<label for="email">Email:</label>
-<input
-  type="email"
-  id="email"
-  name="email"
-  class="guestcontact-form"
-  required
-/><br />
-
-<label for="telephonenumber">Telephone Number:</label>
-<input
-  type="tel"
-  id="telephonenumber"
-  name="telephonenumber"
-  class="guestcontact-form"
-  required
-/><br />
-
-<h2>Address</h2>
-<label for="country">Country:</label>
-<input
-  type="text"
-  id="country"
-  name="country"
-  class="guestcontact-form"
-  required
-/><br />
-
-<label for="city">City:</label>
-<input
-  type="text"
-  id="city"
-  name="city"
-  class="guestcontact-form"
-  required
-/><br />
-
-<label for="address1">Address1:</label>
-<input
-  type="text"
-  id="address1"
-  name="address1"
-  class="guestcontact-form"
-  required
-/><br />
-
-<label for="postalcode">Zip/Postal code:</label>
-<input
-  type="tel"
-  id="postalcode"
-  name="postalcode"
-  class="guestcontact-form"
-  required
-/><br />
-
-<h2>Additional Information</h2>
-<label for="comments">Comments:</label>
-<textarea id="comments" name="comments" class="guestcontact-form"></textarea
-><br />
-<button
-  type="continue"
-  class="guestcontact-form-submit"
-  id="continueBtn"
-  disabled
->
-  continue
-</button>
-
-<script>
-  const inputs = document.querySelectorAll(
-    "input[required], textarea[required]"
-  );
-  const continueBtn = document.getElementById("continueBtn");
-
-  inputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      const allFilled = Array.from(inputs).every(
-        (input) => input.value.trim() !== ""
-      );
-      continueBtn.disabled = !allFilled;
-    });
-  });
-
-  continueBtn.addEventListener("click", () => {
-    window.location.href = "pricepayment.html";
-  });
-</script>
+    <body>
+        <h2 class="header">Contact Info</h2>
+        <!-- <label for="name">Name:</label> -->
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="guestcontact-form"
+          placeholder="Enter your name" 
+          required
+        />
+        
+        <!-- <label for="surname">Surname:</label> -->
+        <input
+          type="text"
+          id="surname"
+          name="surname"
+          class="guestcontact-form"
+          placeholder="Enter your Surname" 
+          required
+        /><br />
+        
+        <!-- <label for="email">Email:</label> -->
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="guestcontact-form"
+          placeholder="Enter your email" 
+          required
+        />
+        
+        <!-- <label for="telephonenumber">Telephone Number:</label> -->
+        <input
+          type="tel"
+          id="telephonenumber"
+          name="telephonenumber"
+          class="guestcontact-form"
+          placeholder="Enter your telephone number" 
+          required
+        /><br />
+        
+        <h2 class="header">Address</h2>
+        <!-- <label for="country">Country:</label> -->
+        <input
+          type="text"
+          id="country"
+          name="country"
+          class="guestcontact-form"
+          placeholder="Enter your Address" 
+          required
+        />
+        
+        <!-- <label for="city">City:</label> -->
+        <input
+          type="text"
+          id="city"
+          name="city"
+          class="guestcontact-form"
+          placeholder="Enter your City" 
+          required
+        /><br />
+        
+        <!-- <label for="address1">Address1:</label> -->
+        <input
+          type="text"
+          id="address1"
+          name="address1"
+          class="guestcontact-form"
+          placeholder="Enter your Address1" 
+          required
+        />
+        
+        <!-- <label for="postalcode">Zip/Postal code:</label> -->
+        <input
+          type="tel"
+          id="postalcode"
+          name="postalcode"
+          class="guestcontact-form"
+          placeholder="Enter your postalcode" 
+          required
+        /><br />
+        
+        <h2 class="header">Additional Information</h2>
+        <!-- <label for="comments">Comments:</label> -->
+        <textarea id="comments" name="comments" class="guestcontact-form"></textarea
+        placeholder="Enter your additional Information" 
+        ><br />
+        <button
+          type="continue"
+          class="guestcontact-form-submit"
+          id="continueBtn"
+          disabled
+        >
+          continue
+        </button>
+        
+        <script>
+          const inputs = document.querySelectorAll(
+            "input[required], textarea[required]"
+          );
+          const continueBtn = document.getElementById("continueBtn");
+        
+          inputs.forEach((input) => {
+            input.addEventListener("input", () => {
+              const allFilled = Array.from(inputs).every(
+                (input) => input.value.trim() !== ""
+              );
+              continueBtn.disabled = !allFilled;
+            });
+          });
+        
+          continueBtn.addEventListener("click", () => {
+            window.location.href = "pricepayment.html";
+          });
+        </script>
+    </body>
+</html>

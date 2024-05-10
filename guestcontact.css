@@ -1,0 +1,55 @@
+body {
+    background-color: #171a33;
+    font-family: "Outfit", sans-serif;
+    color: white;
+  }
+  .header {
+      font-family: "Outfit", sans-serif;
+      font-weight: 600; /* semibold */
+      font-size: 30px;
+      margin-left: 2vw;
+      margin-bottom: 0vw;
+      /* margin-top: 2vw; */
+    }
+    
+  
+  .guestcontact-form {
+    background-color: #dcdde0;
+    border-radius: 0.8em;
+    padding: 1.4vw;
+    color: black;
+    border: none;
+    margin-top: 1vw;
+    margin-right:1vw;
+    margin-left: 3vw;
+    width: 17vw;
+  }
+  
+  .guestcontact-form:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgb(231, 117, 117);
+  }
+  
+  textarea.guestcontact-form {
+    width: 30vw;
+    height: 10vw;
+  }
+  
+  .guestcontact-form-submit {
+    background-color: #43328B;
+    border-radius: 0.5em;
+    width: 8vw;
+    padding: 0.5vw;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    margin-top: 2vw;
+    margin-left: 3vw;
+    cursor: pointer;
+  }
+  
+  .guestcontact-form-submit:hover {
+    background-color: white;
+    color: #720202;
+  }
+  
