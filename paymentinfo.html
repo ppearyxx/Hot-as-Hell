@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sidebar Example</title>
+    <link rel="stylesheet" href="addpromotion.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="#employee">Employee</a>
+      <a href="#room">Room</a>
+      <a href="#reservation">Reservation</a>
+      <a href="#guest">Guest Information</a>
+      <a href="#payment">Payment</a>
+    </div>
+
+    <div class="content">
+        <h1>Payment Information</h1>
+        <span>Payment ID</span>
+        <input type="text" name="paymentId" />
+        <span>Reference No.</span>
+        <input type="text" name="referenceno" />
+        <span>Payment Method</span>
+        <input type="text" name="paymentMethod" /><br>
+        <span>Promotion ID</span>
+        <input type="text" name="promotionId" />
+        <span>earnestpayDatetime</span>
+        <input
+        type="datetime-local"
+        id="earnestpayDatetime"
+        name="earnestpayDatetime"
+        ><br>
+        <span>Total Pay datetime</span>
+        <input type="datetime-local"
+        id="earnestpayDatetime"
+        name="totalpayDatetime"
+        ><br>
+        <span>Payment Method name</span>
+        <input type="text" name="paymentMethod" />
+        <br>
+        <span>Total amount</span>
+        <input type="number" name="totalAmount" step="0.01" required />
+        <br>
+        <span>Credit card no</span>
+        <input type="text" name="creditCardNo" pattern="[0-9]{16}" title="Please enter a valid 16-digit credit card number" />
+
+        
+        <button>Save</button>
+        <button>View All</button>
+      </div>
+    </body>
+  </html>
+  
+  

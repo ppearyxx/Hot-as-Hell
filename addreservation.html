@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sidebar Example</title>
+    <link rel="stylesheet" href="addpromotion.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="#employee">Employee</a>
+      <a href="#room">Room</a>
+      <a href="#reservation">Reservation</a>
+      <a href="#guest">Guest Information</a>
+      <a href="#payment">Payment</a>
+    </div>
+    <div class="content">
+    <div id="reservation">
+      <h2>Reservation</h2>
+      <form>
+        <label for="referenceno">Reference No:</label>
+        <input type="text" id="referenceno" name="referenceno" /><br />
+
+        <label for="checkindate">Check-in Date:</label>
+        <input type="date" id="checkindate" name="checkindate" /><br />
+
+        <label for="checkoutdate">Check-out Date:</label>
+        <input type="date" id="checkoutdate" name="checkoutdate" /><br />
+
+        <label for="guestid">Guest ID:</label>
+        <input type="text" id="guestid" name="guestid" /><br />
+
+        <label for="roomid">Room ID:</label>
+        <input type="text" id="roomid" name="roomid" /><br />
+
+        <label for="realtimecheckin">Real-time Check-in:</label>
+        <input
+          type="datetime-local"
+          id="realtimecheckin"
+          name="realtimecheckin"
+        /><br />
+
+        <label for="realtimecheckout">Real-time Check-out:</label>
+        <input
+          type="datetime-local"
+          id="realtimecheckout"
+          name="realtimecheckout"
+        /><br />
+
+        <label for="earnestpay">Earnest Pay:</label>
+        <input
+          type="checkbox"
+          id="earnestpay"
+          name="earnestpay"
+          value="true"
+        /><br />
+
+        <label for="specialrequest">Special Request:</label>
+        <textarea id="specialrequest" name="specialrequest"></textarea><br />
+
+        <button>Save</button>
+        <button>View All</button>
+      </form>
+    </div>
+    </div>
+  </body>
+</html>
