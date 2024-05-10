@@ -1,98 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hot As Hell</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="Navbar.css" />
-  <link rel="stylesheet" href="reservation.css" />
-  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
-  <script src="/Navbar.js" type="text/javascript" defer></script>
-  <style>
-    .room-details-popup {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      color: #43328b;
-    }
-  </style>
-</head>
-<body>
-  <navbar-component></navbar-component>
-  <div class="reservation-container">
-    <!-- <h2>Make a Reservation</h2> -->
-    <form id="reservation-form" onsubmit="return validateForm()">
-      <div class="form-group">
-        <label for="checkin">Check In Date:</label>
-        <input type="date" id="checkin" name="checkin" required />
-        <label for="checkout">Check Out Date:</label>
-        <input type="date" id="checkout" name="checkout" required />
-        <label for="adults">Adults:</label>
-        <input type="number" id="adults" name="adults" min="1" value="1" required />
-        <label for="children">Children:</label>
-        <input type="number" id="children" name="children" min="0" value="0" required />
-      </div>
-      <h2>Select a Room</h2>
-      <div class="room-details">
-        <img src="/images/standard.jpg" alt="Family Room" class="room-image" />
-        <div class="room-info" style="float: right">
-          <h3>Family Room</h3>
-          <p>Sleeps 3 | 2 Single | 29 sqm</p>
-          <button type="button" onclick="showPopup('family-room-popup')">Room Detail</button>
-          <div id="family-room-popup" class="room-details-popup">
-            <p>our Family rooms offer comfortable accommodations with a queen-size bed, private bathroom, and basic amenities.</p>
-            <button type="button" onclick="hidePopup('family-room-popup')">Close</button>
-          </div>
-          <p class="price">THB 900</p>
-          <button type="button" onclick="navigateToRoomSelection()">Book Now</button>
-        </div>
-      </div>
-      <div class="room-details">
-        <img src="/images/sweet.jpg" alt="Deluxe Twin" class="room-image" />
-        <div class="room-info" style="float: right">
-          <h3>Deluxe Twin</h3>
-          <p>Sleeps 3 | 2 Single | 29 sqm</p>
-          <button type="button" onclick="showPopup('deluxe-twin-popup')">Room Detail</button>
-          <div id="deluxe-twin-popup" class="room-details-popup">
-            <p>our Deluxe twin rooms offer comfortable accommodations with a queen-size bed, private bathroom, and basic amenities.</p>
-            <button type="button" onclick="hidePopup('deluxe-twin-popup')">Close</button>
-          </div>
-          <p class="price">THB 1,900</p>
-          <button type="button" onclick="navigateToRoomSelection()">Book Now</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <script>
-    function showPopup(id) {
-      document.getElementById(id).style.display = "block";
-    }
-
-    function hidePopup(id) {
-      document.getElementById(id).style.display = "none";
-    }
-
-    function navigateToRoomSelection() {
-      if (document.getElementById('reservation-form').checkValidity()) {
-        window.location.href = 'roomselect.html';
-      } else {
-        alert('Please fill in all required fields.');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hot As Hell</title>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="Navbar.css" />
+    <link rel="stylesheet" href="reservation.css" />
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+    <script src="/Navbar.js" type="text/javascript" defer></script>
+    <style>
+      .room-details-popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        color: #43328b;
       }
-    }
-    
-    function validateForm() {
-      return document.getElementById('reservation-form').checkValidity();
-    }
-  </script>
-</body>
+    </style>
+  </head>
+  <body>
+    <navbar-component></navbar-component>
+    <div class="reservation-container">
+      <form id="reservation-form" onsubmit="return validateForm()">
+        <div class="form-group">
+          <label for="checkin">Check In Date:</label>
+          <input type="date" id="checkin" name="checkin" required />
+          <label for="checkout">Check Out Date:</label>
+          <input type="date" id="checkout" name="checkout" required />
+          <label for="adults">Adults:</label>
+          <input
+            type="number"
+            id="adults"
+            name="adults"
+            min="1"
+            value="1"
+            required
+          />
+          <label for="children">Children:</label>
+          <input
+            type="number"
+            id="children"
+            name="children"
+            min="0"
+            value="0"
+            required
+          />
+        </div>
+        <h2>Select a Room</h2>
+        <div class="room-details">
+          <img
+            src="/images/standard.jpg"
+            alt="Family Room"
+            class="room-image"
+          />
+          <div class="room-info" style="float: right">
+            <h3>Family Room</h3>
+            <p>Sleeps 3 | 2 Single | 29 sqm</p>
+            <button type="button" onclick="showPopup('family-room-popup')">
+              Room Detail
+            </button>
+            <div id="family-room-popup" class="room-details-popup">
+              <p>
+                our Family rooms offer comfortable accommodations with a
+                queen-size bed, private bathroom, and basic amenities.
+              </p>
+              <button type="button" onclick="hidePopup('family-room-popup')">
+                Close
+              </button>
+            </div>
+            <p class="price">THB 900</p>
+            <button
+              type="button"
+              onclick="navigateToRoomSelection('Family Room', 'Sleeps 3', '2 Single', '29 sqm', 'THB 900')"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+        <div class="room-details">
+          <img src="/images/sweet.jpg" alt="Deluxe Twin" class="room-image" />
+          <div class="room-info" style="float: right">
+            <h3>Deluxe Twin</h3>
+            <p>Sleeps 3 | 2 Single | 29 sqm</p>
+            <button type="button" onclick="showPopup('deluxe-twin-popup')">
+              Room Detail
+            </button>
+            <div id="deluxe-twin-popup" class="room-details-popup">
+              <p>
+                our Deluxe twin rooms offer comfortable accommodations with a
+                queen-size bed, private bathroom, and basic amenities.
+              </p>
+              <button type="button" onclick="hidePopup('deluxe-twin-popup')">
+                Close
+              </button>
+            </div>
+            <p class="price">THB 1,900</p>
+            <button
+              type="button"
+              onclick="navigateToRoomSelection('Deluxe Twin', 'Sleeps 3', '2 Single', '29 sqm', 'THB 1,900')"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function showPopup(id) {
+        document.getElementById(id).style.display = "block";
+      }
+
+      function hidePopup(id) {
+        document.getElementById(id).style.display = "none";
+      }
+
+      function navigateToRoomSelection(roomType, sleeps, beds, size, price) {
+        if (document.getElementById("reservation-form").checkValidity()) {
+          const checkinDate = document.getElementById("checkin").value;
+          const checkoutDate = document.getElementById("checkout").value;
+          const adults = document.getElementById("adults").value;
+          const children = document.getElementById("children").value;
+          const dates = `${checkinDate} - ${checkoutDate}`;
+          const queryParams = new URLSearchParams({
+            checkin: checkinDate,
+            checkout: checkoutDate,
+            adults: adults,
+            children: children,
+            room: roomType,
+            sleeps: sleeps,
+            beds: beds,
+            size: size,
+            price: price,
+            dates: dates,
+          });
+          window.location.href = `roomselect.html?${queryParams.toString()}`;
+        } else {
+          alert("Please fill in all required fields.");
+        }
+      }
+
+      function validateForm() {
+        return document.getElementById("reservation-form").checkValidity();
+      }
+
+      // Add event listener to the "Add a Room" button
+      document.querySelector('button[onclick="window.location.href=\'reservation.html\'"]').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Get the current URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkinDate = urlParams.get("checkin");
+        const checkoutDate = urlParams.get("checkout");
+        const adults = urlParams.get("adults");
+        const children = urlParams.get("children");
+
+        // Redirect to the reservation.html page with the current URL parameters
+        const queryParams = new URLSearchParams({
+          checkin: checkinDate,
+          checkout: checkoutDate,
+          adults: adults,
+          children: children,
+        });
+        window.location.href = `reservation.html?${queryParams.toString()}`;
+      });
+    </script>
+  </body>
 </html>
