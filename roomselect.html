@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Room Selection</title>
+<link rel="stylesheet" href="roomselect.css" />
+</head>
+<body>
+<!-- <h1>Room Selection</h1> -->
+<div id="reservation-details">
+  <h1>Reservation Details</h1>
+  <p>
+    Check-in Date: <span id="checkin-date"></span> Check-out Date:
+    <span id="checkout-date"></span>
+  </p>
+  <p>
+    Adults: <span id="adults-count"></span> Children:
+    <span id="children-count"></span>
+  </p>
+</div>
+<div id="room-details">
+  <h2>Room Details</h2>
+  <img id="room-image" src="" alt="Room Image" />
+  <div class="room-info" style="float: right">
+    <h3 id="room-name"></h3>
+    <p id="room-description"></p>
+    <p id="room-dates"></p>
+    <p id="room-price"></p>
+    <button onclick="window.location.href='reservation.html'">Add a Room</button>
+    <button onclick="window.location.href='guestcontact.html'">Continue</button>
+  </div>
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedRoom = urlParams.get("room");
+  const roomImage = document.getElementById("room-image");
+  const roomName = document.getElementById("room-name");
+  const roomDescription = document.getElementById("room-description");
+  const roomDates = document.getElementById("room-dates");
+  const roomPrice = document.getElementById("room-price");
+
+  const checkinDate = urlParams.get("checkin");
+  const checkoutDate = urlParams.get("checkout");
+  const adults = urlParams.get("adults");
+  const children = urlParams.get("children");
+  const sleeps = urlParams.get("sleeps");
+  const beds = urlParams.get("beds");
+  const size = urlParams.get("size");
+  const price = urlParams.get("price");
+  const dates = urlParams.get("dates");
+
+  roomImage.src = `/images/${selectedRoom.toLowerCase().replace(/\s+/g, "")}.jpg`;
+  roomName.textContent = selectedRoom;
+  roomDescription.textContent = `${sleeps} | ${beds} | ${size}`;
+  roomDates.textContent = dates;
+  roomPrice.textContent = price;
+
+  function formatDate(dateString) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  document.getElementById("checkin-date").textContent = formatDate(checkinDate) || "";
+  document.getElementById("checkout-date").textContent = formatDate(checkoutDate) || "";
+  document.getElementById("adults-count").textContent = adults || "";
+  document.getElementById("children-count").textContent = children || "";
+</script>
+</body>
+</html>
