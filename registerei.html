@@ -23,19 +23,20 @@
                 
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
                 <input type="text" id="surname" name="surname" placeholder="Enter your Surname" required>
+                <span>Date of birth :</span>
                 <input type="date" id="dob" name="dob" placeholder="Enter your Date of Birth" required>
                 <br>
                 <input type="email" id="email" name="email" placeholder="Enter your Email" required>
                 <input type="password" id="password" name="password" placeholder="Enter your Password" required>
                 <!-- add more choice to choose gender but let them click on picture -->
-                
+                <span>Gender</span>
                 <label>
                     <input type="radio" name="gender" value="boy">
-                    <img src="./images/boy.png" alt="Boy">
+                    <img src="./images/boy.png" alt="Boy" style="width: 50px; height: 50px;">
                 </label>
                 <label>
                     <input type="radio" name="gender" value="girl">
-                    <img src="./images/girl.png" alt="Girl">
+                    <img src="./images/girl.png" alt="Girl" style="width: 50px; height: 50px;">
                 </label>
                 
                 <br>
@@ -43,9 +44,9 @@
                 <input type="text" id="passportNo" name="passportNo" placeholder="Enter your Passport Number" required>
                 <input type="tel" id="telephoneNo" name="telephoneNo" placeholder="Enter your Telephone Number" required>
                 <br>
-                <button>Register</button>
-                
+                <button onclick="console.log('Register button clicked'); window.location.href = 'noreservation.html';">Register</button>
             </div>
         </form>
 
 </html>
+
