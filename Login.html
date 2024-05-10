@@ -12,22 +12,34 @@
     <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
     <script src="/Navbar.js" type="text/javascript" defer></script>
     
+    <script>
+        function checkInputs() {
+            const guestID = document.getElementById('GuestID').value.trim();
+            const password = document.getElementById('Password').value.trim();
+            
+            if (guestID === '' || password === '') {
+                alert('Please fill in all fields.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
-    <navbar-component></navbar-component>
+    <navbar-component> </navbar-component>
     <div class="login">
-    <h1>Sign In</h1>
+    <h1 style="font-size: 50px">Sign In</h1>
 
-    <input type="text" placeholder="Enter GuestID" name="GuestID" id="GuestID" >
+    <input type="text" placeholder="Enter GuestID" name="GuestID" id="GuestID" required>
  
     <br>
 
-    <input type="text" placeholder="Enter Password" name="Password" id="Password" >
+    <input type="text" placeholder="Enter Password" name="Password" id="Password" required>
     
     
     <br>
 
-    <button>login</button>
+    <button onclick="if(checkInputs()) window.location.href='noreservation.html'">login</button>
     <button>sign up</button>
 
     <p>forgot password</p>
