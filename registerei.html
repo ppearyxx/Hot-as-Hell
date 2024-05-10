@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hot As Hell</title>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+        <link rel="stylesheet" href="Navbar.css">
+        <link rel="stylesheet" href="registerei.css">
+    
+        <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+        <script src="/Navbar.js" type="text/javascript" defer></script>
+        
+    </head>
+    <body>
+        <navbar-component></navbar-component>
+        <div class="login">
+        <h1 style="font-size: 50px">Sign Up</h1>
+        <h3 >Personal Information</h3>
+        <form class="register-form">
+            <div class="form-group">
+                
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <input type="text" id="surname" name="surname" placeholder="Enter your Surname" required>
+                <input type="date" id="dob" name="dob" placeholder="Enter your Date of Birth" required>
+                <br>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                <!-- add more choice to choose gender but let them click on picture -->
+                
+                <label>
+                    <input type="radio" name="gender" value="boy">
+                    <img src="./images/boy.png" alt="Boy">
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="girl">
+                    <img src="./images/girl.png" alt="Girl">
+                </label>
+                
+                <br>
+                <input type="text" id="nationalID" name="nationalID" placeholder="Enter your National ID" required>
+                <input type="text" id="passportNo" name="passportNo" placeholder="Enter your Passport Number" required>
+                <input type="tel" id="telephoneNo" name="telephoneNo" placeholder="Enter your Telephone Number" required>
+                <br>
+                <button>Register</button>
+                
+            </div>
+        </form>
+
+</html>

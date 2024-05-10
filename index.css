@@ -1,0 +1,342 @@
+.guest-contact-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.guest-contact-show-price-payment {
+  width: 100%;
+  height: 1024px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(23, 26, 51, 1);
+}
+/* .guest-contact-group4 {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  height: 45px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  background-color: rgba(66, 50, 139, 1);
+} */
+.guest-contact-text {
+  color: rgba(249, 248, 251, 1);
+  height: auto;
+  font-size: 18px;
+  font-style: SemiBold;
+  text-align: center;
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-group1685 {
+  top: 198px;
+  left: 70px;
+  width: 555px;
+  height: 619px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+/* ... rest of the CSS ... */
+.guest-contact-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.guest-contact-show-price-payment {
+  width: 100%;
+  height: 80vh; /* or height: 80%; */
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(23, 26, 51, 1);
+}
+
+
+.guest-contact-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.guest-contact-show-price-payment {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(23, 26, 51, 1);
+}
+button {
+  top: 639px;
+  left: 833px;
+  background-color: #43328B;
+  border-radius: 0.5em;
+  width: 8vw;
+  padding: 0.5em;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  margin: 2vw 1vw 0vw 0vw;
+  cursor: pointer;
+}
+/* .guest-contact-group4 {
+  top: 639px;
+  left: 833px;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  background-color: rgba(66, 50, 139, 1); */
+/* } */
+.guest-contact-text {
+  top: 11px;
+  left: 59px;
+  color: rgba(249, 248, 251, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px; /* Changed from 18px */
+  font-style: SemiBold;
+  text-align: center;
+  font-family: Montserrat;
+  font-weight: 60;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-group1685 {
+  top: 198px;
+  left: 70px;
+  width: 555px;
+  height: 619px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.guest-contact-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.guest-contact-show-price-payment {
+  width: 100%;
+  height: 1024px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(23, 26, 51, 1);
+}
+.guest-contact-group4 {
+  top: 500px;
+  left: 800px;
+  width: 170px;
+  height: 50px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  /* background-color: rgba(66, 50, 139, 1); */
+}
+.guest-contact-text {
+  top: 11px;
+  left: 59px;
+  color: rgba(249, 248, 251, 1);
+  height: auto;
+  position: absolute;
+  font-size: 18px;
+  font-style: SemiBold;
+  text-align: center;
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-group1685 {
+  top: 198px;
+  left: 70px;
+  width: 555px;
+  height: 619px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.guest-contact-text02 {
+  color: rgba(255, 255, 255, 1);
+  width: 273px;
+  height: auto;
+  position: absolute;
+  font-size: 40px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: 17px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-text04 {
+  top: 104px;
+  left: 48px;
+  color: rgba(255, 255, 255, 1);
+  width: 302px;
+  height: auto;
+  position: absolute;
+  font-size: 44px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-text06 {
+  top: 187px;
+  left: 70px;
+  color: rgba(255, 255, 255, 1);
+  width: 423px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-text08 {
+  top: 258px;
+  left: 69px;
+  color: rgba(176, 176, 176, 1);
+  width: 300px;
+  height: auto;
+  position: absolute;
+  font-size: 30px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Outfit;
+  font-weight: 200;
+  line-height: 10px; /* Changed line-height from 60px to 10px */
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.guest-contact-line2 {
+  top: 450px;
+  left: 69px;
+  width: 486px;
+  height: 1px;
+  position: absolute;
+}
+.guest-contact-text14 {
+  top: 460px;
+  left: 69px;
+  color: rgba(255, 255, 255, 1);
+  width: 466px;
+  height: auto;
+  position: absolute;
+  font-size: 30px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: 60px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-group1686 {
+  top: 302px;
+  left: 807px;
+  width: 417px;
+  height: 276px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.guest-contact-text16 {
+  color: rgba(255, 255, 255, 1);
+  width: 374px;
+  height: auto;
+  position: absolute;
+  font-size: 44px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.guest-contact-text18 {
+  top: 85px;
+  left: 78px;
+  color: rgba(255, 255, 255, 1);
+  width: 339px;
+  height: auto;
+  position: absolute;
+  font-size: 32px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Outfit;
+  font-weight: 400;
+  line-height: 60px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+/* .guest-contact-ellipse32 {
+  top: 106px;
+  left: 38px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+}
+.guest-contact-ellipse34 {
+  top: 226px;
+  left: 38px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+}
+.guest-contact-ellipse33 {
+  top: 166px;
+  left: 38px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+} */

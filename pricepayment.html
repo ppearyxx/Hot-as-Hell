@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price and Payment</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <link rel="stylesheet" href="./style.css" />
+    <div>
+      <link href="./index.css" rel="stylesheet" />
+
+      <div class="guest-contact-container">
+        <div class="guest-contact-show-price-payment">
+          <div class="guest-contact-group4">
+            <span class="guest-contact-text"><button id="doneBtn" onclick="window.location.href='paymentsuc.html'" disabled>Done</button></span>
+          </div>
+          <div class="guest-contact-group1685">
+            <span class="guest-contact-text02"><h2>Room 1</h2></span>
+            <span class="guest-contact-text04"><h3>Family Room</h3></span>
+            <span class="guest-contact-text06">
+              <span><h5>Sun, May 12, 2024 - Wed, May 15, 2024</h5></span>
+            </span>
+            <span class="guest-contact-text08">
+              <span><h4>Earnest Money 500</h4></span>
+              <span><h4>Room Price 8,700</h4></span>
+              <span><h4>Promotion -10%</h4></span>
+            </span>
+            <img
+              src="images/line.svg"
+              alt="Line23512"
+              class="guest-contact-line2"
+            />
+            <span class="guest-contact-text14">
+              <span>Total Price THB 7,330</span>
+            </span>
+          </div>
+          <div class="guest-contact-group1686">
+            <span class="guest-contact-text16">
+              <span>Payment Method</span>
+            </span>
+            <span class="guest-contact-text18">
+              <label>
+                <input type="radio" name="paymentmethod" value="Bank Transfer" onclick="enableDoneBtn()">
+                <span>Bank Transfer</span>
+              </label>
+              <br />
+              <label>
+                <input type="radio" name="paymentmethod" value="Cash" onclick="enableDoneBtn()">
+                <span>Cash</span>
+              </label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function enableDoneBtn() {
+        const doneBtn = document.getElementById('doneBtn');
+        const paymentMethods = document.getElementsByName('paymentmethod');
+        let paymentMethodSelected = false;
+        for (let i = 0; i < paymentMethods.length; i++) {
+          if (paymentMethods[i].checked) {
+            paymentMethodSelected = true;
+            break;
+          }
+        }
+        doneBtn.disabled = !paymentMethodSelected;
+      }
+    </script>
+  </body>
+</html>

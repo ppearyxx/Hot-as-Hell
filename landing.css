@@ -1,0 +1,37 @@
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url(images/room.png);
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white; /* Text color */
+      font-family: Arial, sans-serif; /* Font family for text */
+      text-align: center; /* Center align text */
+    }
+    .content {
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+      padding: 20px; /* Padding around the text */
+      border-radius: 5px; /* Rounded corners for the background */
+      text-align: left;        
+    }
+    button {
+      background-color: #43328B;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #720202;
+    }
