@@ -31,7 +31,7 @@ section{
     display: block;
 }
 
-button{
+button, #login{
     background-color: #720202;
     border-radius: 0.5em;
     width: 8vw;
@@ -70,6 +70,10 @@ p {
   font-family: "Outfit", sans-serif;
 }
 
+#signup-btn{
+    text-decoration: none;
+}
+
 span {
   color: #d6961b;
   margin-left: 1vw;
@@ -88,13 +92,6 @@ button {
   margin: 2vw 1vw 0vw 0vw;
   cursor: pointer;
   font-family: "Outfit", sans-serif;
-}
-
-p{
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-left: 15vw;
 }
 
 hr{
