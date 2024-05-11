@@ -27,18 +27,18 @@ SET time_zone = "+00:00";
 -- Table structure for table `guest`
 --
 
-CREATE TABLE `guest` (
-  `guestid` varchar(11) NOT NULL,
-  `fname` varchar(30) NOT NULL,
-  `lname` varchar(30) NOT NULL,
-  `tel` varchar(13) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `gpassword` varchar(12) NOT NULL,
-  `nationalid` varchar(13) NOT NULL,
-  `passportno` varchar(9) NOT NULL,
-  `dateofbirth` date NOT NULL,
-  `gender` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `Guest` (
+  `GuestID` INT PRIMARY KEY,
+  `FirstName` VARCHAR(50) NOT NULL,
+  `LastName` VARCHAR(50) NOT NULL,
+  `Telephone` VARCHAR(20) NOT NULL,
+  `Email` VARCHAR(100) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
+  `NationalID` VARCHAR(20) NOT NULL,
+  `PassportNo` VARCHAR(20) NOT NULL,
+  `DOB` DATE NOT NULL,
+  `Gender` CHAR(1) NOT NULL
+); ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `guest`
@@ -72,6 +72,19 @@ CREATE TABLE `historyreservation` (
 INSERT INTO `historyreservation` (`referenceno`, `guestid`, `cin`, `cout`, `rcin`, `rcout`, `roomid`, `ernestpay`, `specialreq`) VALUES
 (110473926, 'G1001', '2024-01-24', '2024-01-26', '2024-01-24 03:00:00', '2024-01-26 11:00:00', 'D001', 'Yes', '-');
 COMMIT;
+
+
+----Employee--------
+CREATE TABLE Employee (
+  `EmployeeID` INT AUTO_INCREMENT PRIMARY KEY,
+  `FirstName` VARCHAR(50) NOT NULL,
+  `LastName` VARCHAR(50) NOT NULL,
+  `PositionID` INT NOT NULL,
+  `Contact` VARCHAR(20) NOT NULL,
+  `DOB` DATE NOT NULL,
+  `Gender` ENUM('Male', 'Female') NOT NULL
+);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
