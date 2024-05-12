@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if both GuestID and Password are set
@@ -28,8 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if there is a matching record
         if ($result->num_rows > 0) {
             // If credentials are correct, then redirect into noreservation.html page
-            header("Location: ../noreservation.html");
+
+             // Fetch the row from the result set
+             $row = $result->fetch_assoc();
+
+             // Retrieve the first name from the fetched row
+             $firstname = $row["FirstName"];
+ 
+             // Set session variable
+             $_SESSION["FirstName"] = $firstname;
+
+            header("Location: ../Reservation/reservation.php");
             exit(); // Ensure that no further code is executed after redirection
+
         } else {
             // If credentials are incorrect, display failure message
             echo "<h1>Login Failed</h1>";

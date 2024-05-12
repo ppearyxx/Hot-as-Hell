@@ -31,22 +31,6 @@ section{
     display: block;
 }
 
-button, #login{
-    background-color: #720202;
-    border-radius: 0.5em;
-    width: 8vw;
-    padding: 0.5vw;
-    color: white;
-    border: none;
-    font-size: 1.2rem;
-    margin: 2vw 1vw 0vw 0vw;
-    cursor: pointer;
-}
-
-button:hover{
-    background-color: white;
-    color: #720202;
-}
 body {
   background-color: #171a33;
   font-family: "Outfit", sans-serif;
@@ -68,10 +52,6 @@ p {
   cursor: pointer;
   margin-left: 15vw;
   font-family: "Outfit", sans-serif;
-}
-
-#signup-btn{
-    text-decoration: none;
 }
 
 span {

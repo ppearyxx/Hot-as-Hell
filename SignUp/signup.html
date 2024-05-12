@@ -24,8 +24,8 @@
 
             <img src="../images/logo.png" class="logo">
 
-           <button class="login-btn">
-                <a href="../Login/Login.html">Login</a>
+            <button style="background-color: #171A33; color: white; margin-left: 20vw; padding: 0vw;">
+                <a href="../Login/Login.html" style="color: white; text-decoration: none;">Login</a>
             </button>
         </nav>
     </header>
@@ -33,32 +33,38 @@
         <div class="login" style="margin-left: 5vw;">
         <h1 style="font-size: 50px; margin-top: 10vw;">Sign Up</h1>
         <h3 >Personal Information</h3>
+
         <form class="register-form" action="signup.php" method="post">
             <div class="form-group">
                 
-                <input type="text" id="firstname" name="firstname" placeholder="Enter your Firstname" required>
-                <input type="text" id="surname" name="surname" placeholder="Enter your Surname" required>
-                <span>Date of birth :</span>
-                <input type="date" id="dob" name="dob" placeholder="Enter your Date of Birth" required>
-                <br>
-                <input type="email" id="email" name="email" placeholder="Enter your Email" required>
-                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-                <!-- add more choice to choose gender but let them click on picture -->
-                <span>Gender</span>
-                <label>
-                    <input type="radio" name="gender" value="boy">
-                    <img src="../images/boy.png" alt="Boy" style="width: 50px; height: 50px;">
-                </label>
-                <label>
-                    <input type="radio" name="gender" value="girl">
-                    <img src="../images/girl.png" alt="Girl" style="width: 50px; height: 50px;">
-                </label>
+                <input type="text" id="firstname" name="firstname" style="padding: 0.8vw;" placeholder="Enter your Firstname" required>
+                <input type="text" id="lastname" name="lastname" style="padding: 0.8vw;" placeholder="Enter your Lastname" required>
+                <input type="date" id="dob" name="dob" style="padding: 0.8vw;" placeholder="Enter your Date of Birth" required>
                 
                 <br>
-                <input type="text" id="nationalID" name="nationalID" placeholder="Enter your National ID" required>
-                <input type="text" id="passportNo" name="passportNo" placeholder="Enter your Passport Number" required>
-                <input type="tel" id="telephoneNo" name="telephoneNo" placeholder="Enter your Telephone Number" required>
                 <br>
+
+                <input type="email" id="email" name="email" style="padding: 0.8vw;" placeholder="Enter your Email" required>
+                <input type="password" id="password" name="password" style="padding: 0.8vw;" placeholder="Enter your Password" required>
+               
+                
+                <input type="radio" name="gender" value="M" style="width: 1vw; margin-right: 1vw;">
+                <img src="../images/boy.png" alt="Boy" style="width: 40px; height: 40px; margin-right: 4vw;">
+               
+               
+                <input type="radio" name="gender" value="F" style="width: 1vw; margin-right: 1vw;">
+                <img src="../images/girl.png" alt="Girl" style="width: 40px; height: 40px;">
+              
+                
+                <br>
+                <br>
+
+                <input type="text" id="nationalID" name="nationalID" style="padding: 0.8vw;" placeholder="Enter your National ID" required>
+                <input type="text" id="passportNo" name="passportNo" style="padding: 0.8vw;" placeholder="Enter your Passport Number" required>
+                <input type="tel" id="telephoneNo" name="telephoneNo" style="padding: 0.8vw;" placeholder="Enter your Telephone Number" required>
+                
+                <br>
+
                 <button type="submit">Register</button>
             </div>
         </form>
