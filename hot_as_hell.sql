@@ -237,7 +237,7 @@ INSERT INTO `room` (`RoomID`, `RoomType`, `EmployeeID`, `RoomStatus`) VALUES
 CREATE TABLE `room_details` (
   `RoomType` varchar(4) NOT NULL,
   `RoomDetail` text NOT NULL,
-  `RoomPrice` DECIMAL(10, 2) NOT NULL
+  `RoomPrice` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
