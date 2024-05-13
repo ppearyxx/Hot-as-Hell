@@ -126,6 +126,45 @@ INSERT INTO `guest` (`GuestID`, `FirstName`, `LastName`, `Telephone`, `Email`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `history_reservation`
+--
+
+CREATE TABLE `historyreservation` (
+  `referenceno` int(10) NOT NULL,
+  `guestid` varchar(11) NOT NULL,
+  `cin` date NOT NULL,
+  `cout` date NOT NULL,
+  `rcin` datetime NOT NULL,
+  `rcout` datetime NOT NULL,
+  `roomid` varchar(5) NOT NULL,
+  `ernestpay` varchar(3) NOT NULL,
+  `specialreq` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `historyreservation`
+--
+
+INSERT INTO `history_reservation` (`referenceno`, `guestid`, `cin`, `cout`, `rcin`, `rcout`, `roomid`, `ernestpay`, `specialreq`) VALUES
+(110473926, 'G1001', '2024-01-24', '2024-01-26', '2024-01-24 03:00:00', '2024-01-26 11:00:00', 'D001', 'Yes', '-');
+COMMIT;
+
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `PaymentID` INT AUTO_INCREMENT PRIMARY KEY,
+  `EarnestPayCheck` DECIMAL(10, 2), 
+  `PaymentMethodID` INT, 
+  `PromotionID` INT, 
+  `TotalAmount` DECIMAL(10, 2), 
+  `EarnestPayDatetime` DATETIME, 
+  `TotalPayDatetime` DATETIME 
+);
+
+--
 -- Table structure for table `reservation`
 --
 
