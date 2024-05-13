@@ -86,6 +86,18 @@ CREATE TABLE Employee (
 );
 
 
+-----Payment-------
+CREATE TABLE `Payment` (
+  `PaymentID` INT AUTO_INCREMENT PRIMARY KEY,
+  `EarnestPayCheck` DECIMAL(10, 2), 
+  `PaymentMethodID` INT, 
+  `PromotionID` INT, 
+  `TotalAmount` DECIMAL(10, 2), 
+  `EarnestPayDatetime` DATETIME, 
+  `TotalPayDatetime` DATETIME 
+);
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
