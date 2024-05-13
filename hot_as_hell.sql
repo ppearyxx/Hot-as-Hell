@@ -126,7 +126,7 @@ INSERT INTO `guest` (`GuestID`, `FirstName`, `LastName`, `Telephone`, `Email`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_reservation`
+-- Table structure for table `historyreservation`
 --
 
 CREATE TABLE `historyreservation` (
@@ -149,6 +149,17 @@ INSERT INTO `history_reservation` (`referenceno`, `guestid`, `cin`, `cout`, `rci
 (110473926, 'G1001', '2024-01-24', '2024-01-26', '2024-01-24 03:00:00', '2024-01-26 11:00:00', 'D001', 'Yes', '-');
 COMMIT;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotion_setup`
+--
+CREATE TABLE `promotion_setup` (
+  `PromotionID` INT AUTO_INCREMENT PRIMARY KEY,
+  `PercentPrice` DECIMAL(5,2) 
+);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `payment`
