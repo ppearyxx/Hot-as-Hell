@@ -52,7 +52,7 @@ CREATE TABLE `employee` (
   `Contact` varchar(11) NOT NULL,
   `DOB` date NOT NULL,
   `Gender` varchar(1) NOT NULL
-); ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee`
