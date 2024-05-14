@@ -39,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
              // Set session variable
              $_SESSION["FirstName"] = $firstname;
+             $_SESSION["GuestID"] = $inputGuestID;
+             
 
             header("Location: ../Reservation/reservation.php");
             exit(); // Ensure that no further code is executed after redirection

@@ -12,6 +12,7 @@ if (!isset($_SESSION["FirstName"])) {
 
 // Retrieve username from session variable
 $username = $_SESSION["FirstName"];
+$guest_id = $_SESSION["GuestID"];
 
 ?>
 
@@ -29,20 +30,7 @@ $username = $_SESSION["FirstName"];
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
 
     <style>
-      .room-details-popup {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        color: #43328b;
-      }
+      
 
       .user-button {
         display: flex;
@@ -122,7 +110,7 @@ div.desc {
   overflow: hidden;
   width: 100%;
   height: 0;
-  transition: .5s ease;
+  transition: 1s ease;
 }
 
 .gallery:hover .overlay {
@@ -261,24 +249,25 @@ div.desc {
     </div>
 
 
-    <form class="register-form" action="" method="post" style="margin-left:2vw;">
+    <form class="register-form" action="roomselect.php" method="post" style="margin-left:2vw;">
     <div class="form-group">
 
-       
+      <p id="timeError" style="color: red; display: none"></p>
 
-        <div style="display:flex;">
-          <div class="date-time-group">
-              <label for="checkindate" style="margin-right: 1vw;">Check-in Date:</label>
-              <input type="date" id="checkindate" name="checkindate" required>
-              <input type="time" id="checkintime" name="checkintime" required>
-          </div>
+      <div style="display:flex;">
+        <div class="date-time-group">
+            <label for="checkindate" style="margin-right: 1vw;">Check-in Date:</label>
+            <input type="date" id="checkindate" name="checkindate" min="<?php echo date('Y-m-d'); ?>" required>
+            <input type="time" id="checkintime" name="checkintime" onchange="validTimeJS()" required>
+        </div>
 
-          <div class="date-time-group">
-              <label for="checkoutdate" style="margin-right: 1vw;">Check-out Date:</label>
-              <input type="date" id="checkoutdate" name="checkoutdate" required>
-              <input type="time" id="checkouttime" name="checkouttime" required>
-          </div>
-       </div>
+        <div class="date-time-group">
+            <label for="checkoutdate" style="margin-right: 1vw;">Check-out Date:</label>
+            <input type="date" id="checkoutdate" name="checkoutdate" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required>
+            <input type="time" id="checkouttime" name="checkouttime" onchange="validTimeJS()"  required>
+        </div>
+      </div>
+
     </div>
 
     <div style="display:flex;">
@@ -298,25 +287,51 @@ div.desc {
           <input type="text" id="specialrequests" style="width: 30vw;" name="specialrequests">
       </div>
 
+      <button type="submit" style="margin-left: 3vw;">Continue</button>
     </div>
 
-    <select name="roomType" id="roomType"> <!--After selecting the type of room, it lists all the availble rooms-->
-      <option value="standard">Standard</option>
-      <option value="family">Family</option>
-      <option value="deluxe">Deluxe</option>
-      <option value="luxury">Luxury</option>
-    </select>
-<!--Example: if user selects standard, then here it will show all the available standard rooms-->
-<!--Still working:)-->
-    <select name="roomType" id="roomType">
-      <option value="R1001">R1001</option>
-      <option value="R1002">R1002</option>
-      <option value="R1003">R1003</option>
-      <option value="R1004">R1004</option>
-    </select>
-
-    <button type="submit">Reserve</button>
+    
+  
 </form>
 
+    <script>
+        // Get the check-in and check-out date inputs
+        const checkInDateInput = document.getElementById('checkindate');
+        const checkOutDateInput = document.getElementById('checkoutdate');
+        const checkInTimeInput = document.getElementById('checkintime');
+        const checkOutTimeInput = document.getElementById('checkouttime');
+
+
+        // Restrict years in date inputs
+        const currentYear = new Date().getFullYear();
+        const futureYears = currentYear + 10; // Allow 10 years into the future
+        checkInDateInput.setAttribute('max', futureYears + '-12-31');
+        checkOutDateInput.setAttribute('max', futureYears + '-12-31');
+
+
+        function validTimeJS() {
+
+          //if input not in time range
+          if (checkInTimeInput.value < "13:59" || checkInTimeInput.value > "24:00") {
+            document.getElementById("timeError").innerHTML = "Please select a time for check-in between 2PM - 12AM";
+            document.getElementById("timeError").style.display = "";
+             // Clear the input time field
+              checkInTimeInput.value = "";
+          }
+
+          else if (checkOutTimeInput.value > "12:01") {
+            document.getElementById("timeError").innerHTML = "Please select a time for check-out before 12PM";
+            document.getElementById("timeError").style.display = "";
+             // Clear the input time field
+              checkOutTimeInput.value = "";
+          }
+
+          //clear the error class
+          else {
+            document.getElementById("timeError").style.display = "none";
+          }
+      }
+
+    </script>
   </body>
 </html>

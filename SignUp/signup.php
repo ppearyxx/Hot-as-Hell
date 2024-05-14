@@ -49,7 +49,14 @@ if (mysqli_connect_errno()) {
     if (!mysqli_query($con,$sql)) {
         die('Error: ' . mysqli_error($con));
     }
-    echo "Success" ;
+ 
+    // Display JavaScript alert and redirect to login page after user confirmation
+    echo "<script>
+    var confirmed = confirm('Thank you for signing up. Your GuestID is $guest_id. Click OK to proceed to login page.');
+    if (confirmed) {
+        window.location.href = '../Login/login.html';
+    }
+    </script>";
 
 mysqli_close($con);
 ?>
