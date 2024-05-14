@@ -81,7 +81,7 @@ INSERT INTO `employee` (`EmployeeID`, `FirstName`, `LastName`, `PositionID`, `Co
 CREATE TABLE `employee_position` (
   `PositionID` varchar(4) NOT NULL,
   `Position` varchar(30) NOT NULL,
-  `Salary` DECIMAL(10, 2) NOT NULL
+  `Salary` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -237,7 +237,7 @@ INSERT INTO `room` (`RoomID`, `RoomType`, `EmployeeID`, `RoomStatus`) VALUES
 CREATE TABLE `room_details` (
   `RoomType` varchar(4) NOT NULL,
   `RoomDetail` text NOT NULL,
-  `RoomPrice` int NOT NULL
+  `RoomPrice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
