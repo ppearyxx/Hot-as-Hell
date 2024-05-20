@@ -1,0 +1,25 @@
+body {
+    background-color: #171a33;
+    font-family: "Outfit", sans-serif;
+    color: white;
+    text-align: center;
+    padding: 50px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 2vw;
+    font-family: "Outfit", sans-serif;
+  }
+  
+  p {
+    color: white;
+    font-family: "Outfit", sans-serif;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
