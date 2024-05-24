@@ -181,8 +181,15 @@ CREATE TABLE `payment` (
 
 CREATE TABLE `payment_method` (
   `PaymentMethodID` INT AUTO_INCREMENT PRIMARY KEY,
-  `PaymentMethodName` varchar(15) NOT NULL,   
+  `PaymentMethodName` varchar(15) NOT NULL
 );
+
+INSERT INTO `payment_method` (`PaymentMethodID`, `PaymentMethodName`) VALUES
+('PM001', 'Mastercard'),
+('PM002', 'Internet Banking'),
+('PM003', 'Bill Payment'),
+('PM004', 'Paypal'),
+('PM005', 'Alipay');
 
 --
 -- Table structure for table `reservation`
