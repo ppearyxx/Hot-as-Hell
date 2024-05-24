@@ -13,13 +13,12 @@ if(empty($_POST['room_id'])){
     $error_message = "Please Input data Room Type";
 }elseif(empty($_POST['employee_id'])){
     $error_message = "Please Input data Employee ID";
-}elseif(empty($_POST['room_status'])){
-    $error_message = "Please Input data Room Status";
-}else {
+}
+else {
     $room_id = mysqli_real_escape_string($con, $_POST['room_id']);
     $room_type = mysqli_real_escape_string($con, $_POST['room_type']);
     $employee_id = mysqli_real_escape_string($con, $_POST['employee_id']);
-    $room_status = mysqli_real_escape_string($con, $_POST['room_status']);
+    $room_status = "Available"; // Set the default value for RoomStatus
 
     $sql="INSERT INTO room (RoomID, RoomType, EmployeeID, RoomStatus)
     VALUES ('$room_id', '$room_type', '$employee_id', '$room_status')";
@@ -55,4 +54,3 @@ mysqli_close($con);
         </table>
     </form>
 </div>
-
