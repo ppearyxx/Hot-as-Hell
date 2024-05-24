@@ -109,11 +109,11 @@ CREATE TABLE `guest` (
   `LastName` varchar(30) NOT NULL,
   `Telephone` varchar(13) NOT NULL,
   `Email` varchar(30) NOT NULL,
-  `Password` varchar(12) NOT NULL,
-  `NationalID` varchar(13) NOT NULL,
-  `PassportNo` varchar(9) NOT NULL,
-  `DOB` date NOT NULL,
-  `Gender` varchar(1) NOT NULL
+  `Password` varchar(12),
+  `NationalID` varchar(13),
+  `PassportNo` varchar(9),
+  `DOB` date,
+  `Gender` varchar(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
