@@ -19,7 +19,7 @@ if (mysqli_connect_errno()) {
         <tr>
             <td height="30" align="right">Room Type : </td>
             <td width="105" align="left">
-                <select name="room_type" id="room_type">
+               <select name="room_type" id="room_type">
                     <option value="DLX">Deluxe</option>
                     <option value="FAM">Family</option>
                     <option value="STD">Standard</option>
@@ -30,22 +30,13 @@ if (mysqli_connect_errno()) {
         <tr>
             <td height="30" align="right">Employee ID : </td>
             <td width="105" align="left"><input name="employee_id" type="text" id="employee_id" size="30" value="" maxlenght="12" placeholder="E00000000000"> </td>
-        </tr>
-        <tr>
-            <td height="30" align="right">Room Status : </td>
-            <td width="105" align="left">
-                <select name="room_status" id="room_status">
-                    <option value="Available">Available</option>
-                    <option value="Not Available">Not Available</option>                    
-                </select>
-            </td>
-        </tr>    
+        </tr>          
         <tr>
             <td height="30" align="right"></td>
             <td width="105" align="right"><input name="INSERT" type="submit" id="INSERT" value="Insert" /></td>
         </tr>
     </table>
-</form>
+</form> 
 
 <!-- Second form for the "Back" button -->
 <form name="inpfrm" method="post" action="RoomSearch.php">
