@@ -176,6 +176,15 @@ CREATE TABLE `payment` (
 );
 
 --
+-- Table structure for table `payment_method`
+--
+
+CREATE TABLE `payment_method` (
+  `PaymentMethodID` INT AUTO_INCREMENT PRIMARY KEY,
+  `PaymentMethodName` varchar(15) NOT NULL,   
+);
+
+--
 -- Table structure for table `reservation`
 --
 
