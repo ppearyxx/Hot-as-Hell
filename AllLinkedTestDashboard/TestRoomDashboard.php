@@ -44,8 +44,11 @@
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Room Information</h1>
                 <div>
-                    <p>Search</p>
-                    <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                <form method="GET" action="TestRoomSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
                 </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
@@ -115,10 +118,7 @@
             <div style="width: 100%; display: flex; justify-content: flex-end;">
                 <a href="TestRoomInsertForm.php">
                     <button style="color: white; border-radius: 10px; background-color: #00868D; padding: 10px;">Insert New Room</button>
-                </a>
-                <form name="searchfrm" method="post" action="TestRoomSearchForm.php" style="margin-left: 10px;">
-                    <button type="submit" style="color: white; border-radius: 10px; background-color: #00868D; padding: 10px;">Search For Room</button>
-                </form>
+                </a>                
             </div>
         </div>
     </div>

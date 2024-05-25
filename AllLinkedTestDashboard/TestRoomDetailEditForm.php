@@ -1,52 +1,3 @@
-<?php
-// Establishing connection to MySQL database
-$con = mysqli_connect("localhost", "root", "", "hot_as_hell");
-// Check connection
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-// Retrieve RoomType from URL parameter
-$roomType = isset($_GET['type']) ? $_GET['type'] : '';
-if (!$roomType) {
-    echo "Room Type not provided.";
-    exit;
-}
-
-// Fetch room details from the database based on RoomType
-$query = "SELECT * FROM room_details WHERE RoomType = '$roomType'";
-$result = mysqli_query($con, $query);
-
-// Check if room exists
-if (mysqli_num_rows($result) === 0) {
-    echo "Room not found.";
-    exit;
-}
-
-// Fetch room details
-$row = mysqli_fetch_assoc($result);
-$roomDetail = $row['RoomDetail'];
-$roomPrice = $row['RoomPrice'];
-
-// Handle form submission for updating room details
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve updated details from form fields
-    $updatedRoomType = mysqli_real_escape_string($con, $_POST['room_type']);
-    $updatedRoomDetail = mysqli_real_escape_string($con, $_POST['room_detail']);
-    $updatedRoomPrice = mysqli_real_escape_string($con, $_POST['room_price']);
-
-    // Update room details in the database
-    $updateQuery = "UPDATE room_details SET RoomType = '$updatedRoomType', RoomDetail = '$updatedRoomDetail', RoomPrice = '$updatedRoomPrice' WHERE RoomType = '$roomType'";
-    if (mysqli_query($con, $updateQuery)) {
-        echo "Room details updated successfully.";
-    } else {
-        echo "Error updating room details: " . mysqli_error($con);
-    }
-}
-
-mysqli_close($con);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,11 +52,71 @@ mysqli_close($con);
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Update Room Detail</h1>
                 <div>
-                    <p>Search</p>
-                    <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                <form method="GET" action="TestRoomDetailSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
                 </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
+
+            <?php
+            // Establishing connection to MySQL database
+            $con = mysqli_connect("localhost", "root", "", "hot_as_hell");
+            // Check connection
+            if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            }
+
+            // Retrieve RoomType from URL parameter
+            $roomType = isset($_GET['type']) ? $_GET['type'] : '';
+            if (!$roomType) {
+                echo "Room Type not provided.";
+                exit;
+            }
+
+            // Fetch room details from the database based on RoomType
+            $query = "SELECT * FROM room_details WHERE RoomType = '$roomType'";
+            $result = mysqli_query($con, $query);
+
+            // Check if room exists
+            if (mysqli_num_rows($result) === 0) {
+                echo "Room not found.";
+                exit;
+            }
+
+            // Fetch room details
+            $row = mysqli_fetch_assoc($result);
+            $roomDetail = $row['RoomDetail'];
+            $roomPrice = $row['RoomPrice'];
+
+            // Handle form submission for updating room details
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Retrieve updated details from form fields
+                $updatedRoomType = mysqli_real_escape_string($con, $_POST['room_type']);
+                $updatedRoomDetail = mysqli_real_escape_string($con, $_POST['room_detail']);
+                $updatedRoomPrice = mysqli_real_escape_string($con, $_POST['room_price']);
+
+                // Update room details in the database
+                $updateQuery = "UPDATE room_details SET RoomType = '$updatedRoomType', RoomDetail = '$updatedRoomDetail', RoomPrice = '$updatedRoomPrice' WHERE RoomType = '$roomType'";
+                
+                // Execute update query
+                if (mysqli_query($con, $updateQuery)) {
+                    // Store success message in session
+                    $_SESSION['success_message'] = "Room details updated successfully.";
+
+                    // Redirect to the same page to prevent displaying old data
+                    header("Location: {$_SERVER['PHP_SELF']}?type=$updatedRoomType"); // Change 'id' to 'type'
+                    exit();
+                } else {
+                    echo "Error updating room details: " . mysqli_error($con);
+                }
+            }
+
+
+            mysqli_close($con);
+            ?>
 
                 <?php if ($roomType): ?>
                 <form method="post">
