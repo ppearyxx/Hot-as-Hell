@@ -180,7 +180,7 @@ CREATE TABLE `payment` (
 --
 
 CREATE TABLE `payment_method` (
-  `PaymentMethodID` INT AUTO_INCREMENT PRIMARY KEY,
+  `PaymentMethodID` varchar(5) PRIMARY KEY,
   `PaymentMethodName` varchar(15) NOT NULL
 );
 
