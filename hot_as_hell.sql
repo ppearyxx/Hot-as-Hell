@@ -155,10 +155,16 @@ COMMIT;
 -- Table structure for table `promotion_setup`
 --
 CREATE TABLE `promotion_setup` (
-  `PromotionID` INT AUTO_INCREMENT PRIMARY KEY,
+  `PromotionID` VARCHAR(5) PRIMARY KEY,
   `PercentPrice` DECIMAL(5,2) 
 );
 
+INSERT INTO `promotion_setup` (`PromotionID`, `PercentPrice`) VALUES
+('PRO01', '10'),
+('PRO02', '15'),
+('PRO03', '20'),
+('PRO04', '50');
+COMMIT;
 -- --------------------------------------------------------
 
 --
