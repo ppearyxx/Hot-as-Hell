@@ -4,7 +4,7 @@ session_start();
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if both GuestID and Password are set
-    if (isset($_POST["GuestID"]) && isset($_POST["Password"])) {
+    if (isset($_POST["UserID"]) && isset($_POST["Password"])) {
         
         $servername = "localhost";
         $username = "root";
@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         
-        $inputGuestID = $conn->real_escape_string($_POST["GuestID"]);
+        $inputUserID = $conn->real_escape_string($_POST["UserID"]);
         $inputPassword = $conn->real_escape_string($_POST["Password"]);
 
         // Select all the rows from table where there is matching GuestID and Password entered by user
-        $sql = "SELECT * FROM Guest WHERE GuestID = '$inputGuestID' AND Password = '$inputPassword'";
+        $sql = "SELECT * FROM Employee WHERE EmployeeID = '$inputUserID' AND Password = '$inputPassword'";
         $result = $conn->query($sql);
 
         // Check if there is a matching record
@@ -34,13 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              $row = $result->fetch_assoc();
 
              // Retrieve the first name from the fetched row
-             $firstname = $row["FirstName"];
+             $employeeid = $row["EmployeeID"];
  
              // Set session variable
-             $_SESSION["FirstName"] = $firstname;
-             $_SESSION["GuestID"] = $inputGuestID;
+             $_SESSION["EmployeeID"] = $employeeid;
              
-            header("Location: ../Reservation/reservation.php");
+            header("Location: ../Dashboard/Admindashboard.php");
             exit(); // Ensure that no further code is executed after redirection
 
         } else {
