@@ -24,22 +24,22 @@
     <div class="main">
         <div class="left">
             <ul>
-                <li class="highlight"><a href="employee.php"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Employee</a></li>
+                <li><a href="employee.php"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Employee</a></li>
                 <li><a href="TestPositionDashboard.php"><i class="fa-solid fa-briefcase" style="margin-right: 10px;"></i>Employee Position</a></li>
                 <li><a href="TestRoomDashBoard.php"><i class="fa-solid fa-bed" style="margin-right: 10px;"></i>Room</a></li>
                 <li><a href="TestRoomDetailDashBoard.php"><i class="fa-solid fa-hotel" style="margin-right: 10px;"></i>Room Detail</a></li>
                 <li><a href="reservation.php"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Reservation</a></li>
                 <li><a href="guest.php"><i class="fa-solid fa-book" style="margin-right: 10px;"></i>Guest Information</a></li>
-                <li><a href="payment.php"><i class="fa-brands fa-paypal" style="margin-right: 10px;"></i>Payment</a></li>
+                <li class="highlight"><a href="payment.php"><i class="fa-brands fa-paypal" style="margin-right: 10px;"></i>Payment</a></li>
                 <li><a href="TestMethodDashboard.php"><i class="fa-solid fa-coins" style="margin-right: 10px;"></i>Payment Method</a></li>                
                 <li><a href="TestPromotionDashboard.php"><i class="fa-solid fa-desktop" style="margin-right: 10px;"></i>Promotion</a></li>
             </ul>
         </div>
         <div class="right">
             <div style="display: flex; justify-content: space-between;color: white;">
-                <h1>Employee Information</h1>
+                <h1>Payment Information</h1>
                 <div>
-                    <form method="GET" action="employee_searchf.php">
+                    <form method="GET" action="payment_search.php">
                         <p>Search</p>
                         <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
                         <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
@@ -50,22 +50,22 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Employee ID</th>
-                            <th>Name</th>
-                            <th>PositionID</th>
-                            <th>Contact</th>
-                            <th>DOB</th>
-                            <th>Gender</th>
-                            <th>Actions</th>
+                            <th>Payment ID</th>
+                            <th>Earnest Payment</th>
+                            <th>Payment Method ID</th>
+                            <th>Promotion ID</th>
+                            <th>Total Amount</th>
+                            <th>Earnest Payment Date</th>
+                            <th>Total Payment Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php include 'employee_search.php'; ?>
+                        <?php include 'payment_search.php'; ?>
                     </tbody>
                 </table>
             </div>
             <div style="width: 100%; display: flex;">
-                <a href="employee.php" style="text-decoration: none;">
+                <a href="payment.php" style="text-decoration: none;">
                 <button style="color: white; border-radius: 10px; background-color: #00868D; padding: 10px; width: 102px; margin-top: 20px; border: none; margin-left: auto;">Back</button>
                 </a>
             </div>
