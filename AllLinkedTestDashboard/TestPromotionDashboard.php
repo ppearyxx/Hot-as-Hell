@@ -51,6 +51,13 @@
         <div class="right">
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Promotion Information</h1>
+                <div>
+                <form method="GET" action="TestPromotionSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
+                </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
                 <?php
@@ -117,10 +124,7 @@
             <div style="width: 100%; display: flex; justify-content: flex-end;">
                 <a href="TestPromotionInsertForm.php">
                     <button class="btn btn-primary-custom">Insert New Promotion</button>
-                </a>
-                <form name="searchfrm" method="post" action="TestPromotionSearchForm.php" style="margin-left: 10px;">
-                    <button type="submit" class="btn btn-primary-custom">Search For Promotion</button>
-                </form>
+                </a>                
             </div>
         </div>
     </div>

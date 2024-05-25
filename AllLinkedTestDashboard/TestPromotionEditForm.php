@@ -52,57 +52,66 @@
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Promotion Setup</h1>
                 <div>
-                    <p>Search</p>
-                    <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                <form method="GET" action="TestPromotionSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
                 </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
 
-                <?php
-                // Establishing connection to MySQL database
-                $con = mysqli_connect("localhost", "root", "", "hot_as_hell");
-                // Check connection
-                if (mysqli_connect_errno()) {
-                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                }
+            <?php
+// Establishing connection to MySQL database
+$con = mysqli_connect("localhost", "root", "", "hot_as_hell");
+// Check connection
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 
-                // Retrieve PromotionID from URL parameter
-                $promotionID = isset($_GET['id']) ? $_GET['id'] : '';
-                if (!$promotionID) {
-                    echo "Promotion ID not provided.";
-                    exit;
-                }
+// Retrieve PromotionID from URL parameter
+$promotionID = isset($_GET['id']) ? $_GET['id'] : '';
+if (!$promotionID) {
+    echo "Promotion ID not provided.";
+    exit;
+}
 
-                // Fetch promotion details from the database based on PromotionID
-                $query = "SELECT * FROM promotion_setup WHERE PromotionID = '$promotionID'";
-                $result = mysqli_query($con, $query);
+// Fetch promotion details from the database based on PromotionID
+$query = "SELECT * FROM promotion_setup WHERE PromotionID = '$promotionID'";
+$result = mysqli_query($con, $query);
 
-                // Check if promotion exists
-                if (mysqli_num_rows($result) === 0) {
-                    echo "Promotion not found.";
-                    exit;
-                }
+// Check if promotion exists
+if (mysqli_num_rows($result) === 0) {
+    echo "Promotion not found.";
+    exit;
+}
 
-                // Fetch promotion details
-                $row = mysqli_fetch_assoc($result);
-                $percentPrice = $row['PercentPrice'];
+// Fetch promotion details
+$row = mysqli_fetch_assoc($result);
+$percentPrice = $row['PercentPrice'];
 
-                // Handle form submission for updating promotion details
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    // Retrieve updated details from form fields
-                    $updatedPercentPrice = mysqli_real_escape_string($con, $_POST['percent_price']);
+// Handle form submission for updating promotion details
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve updated details from form fields
+    $updatedPercentPrice = mysqli_real_escape_string($con, $_POST['percent_price']);
 
-                    // Update promotion details in the database
-                    $updateQuery = "UPDATE promotion_setup SET PercentPrice = '$updatedPercentPrice' WHERE PromotionID = '$promotionID'";
-                    if (mysqli_query($con, $updateQuery)) {
-                        echo "Promotion details updated successfully.";
-                    } else {
-                        echo "Error updating promotion details: " . mysqli_error($con);
-                    }
-                }
+    // Update promotion details in the database
+    $updateQuery = "UPDATE promotion_setup SET PercentPrice = '$updatedPercentPrice' WHERE PromotionID = '$promotionID'";
+    
+    if (mysqli_query($con, $updateQuery)) {
+        // Store success message in session
+        $_SESSION['success_message'] = "Promotion details updated successfully.";
 
-                mysqli_close($con);
-                ?>
+        // Redirect to the same page to prevent displaying old data
+        header("Location: {$_SERVER['PHP_SELF']}?id=$promotionID"); 
+        exit();
+    } else {
+        echo "Error updating promotion details: " . mysqli_error($con);
+    }
+}
+
+mysqli_close($con);
+?>
 
 <!-- Display form pre-filled with existing promotion details -->
 <?php if ($promotionID): ?>
