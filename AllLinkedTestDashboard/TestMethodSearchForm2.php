@@ -5,18 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot As Hell</title>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
     <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script>
-        function deleteRow(button) {
-            // Find the row containing the button and remove it
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -52,61 +44,64 @@
                 </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
-                <?php
-                // Establishing connection to MySQL database
-                $con = mysqli_connect("localhost", "root", "", "hot_as_hell");
-                // Check connection
-                if (mysqli_connect_errno()) {
-                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                }
+            <?php
+// Establishing connection to MySQL database
+$con = mysqli_connect("localhost", "root", "", "hot_as_hell");
 
-                // Retrieving user input from the form fields and handling empty inputs
-                $PaymentMethodID = isset($_POST['payment_method_id']) ? $_POST['payment_method_id'] : '';
-                $PaymentMethodName = isset($_POST['payment_method_name']) ? $_POST['payment_method_name'] : '';
+// Check connection
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+}
 
-                // Counter for numbering rows
-                $r = 1;
-                // Constructing the SQL query based on user input
-                $query = "SELECT * FROM payment_method WHERE PaymentMethodID LIKE '%$PaymentMethodID%' 
-                AND PaymentMethodName LIKE '%$PaymentMethodName%'";
+// Retrieving search query from the form field
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-                // Executing the SQL query
-                $result = mysqli_query($con, $query);
+// Constructing the SQL query
+$query = "SELECT * FROM payment_method WHERE 
+          PaymentMethodID LIKE '%$search%' OR 
+          PaymentMethodName LIKE '%$search%'";
 
-                // Displaying the fetched data in a table format
-                echo "<table class='table table-hover' style='font-size: 20px;'>";
-                echo "<thead>";
-                echo "<tr>";
-                echo "<th>No</th>";
-                echo "<th>Payment Method ID</th>";
-                echo "<th>Payment Method Name</th>";
-                echo "<th>Actions</th>"; // New column for actions
-                echo "</tr>";
-                echo "</thead>";
-                echo "<tbody>";
+// Executing the SQL query
+$result = mysqli_query($con, $query);
 
-                foreach ($result as $row) {
-                    echo "<tr>";
-                    echo "<td>".$r++."</td>";
-                    echo "<td>".$row["PaymentMethodID"]."</td>";
-                    echo "<td>".$row["PaymentMethodName"]."</td>";
-                    echo "<td>";
-                    echo "<a href='TestMethodEditForm.php?id=".$row["PaymentMethodID"]."'><button style='color: white; border-radius: 5px; background-color: #00868D; padding: 5px; border: none;'>Edit</button></a> ";
-                    echo "<a href='TestMethodDeleteForm.php?id=".$row["PaymentMethodID"]."'><button style='color: white; border-radius: 5px; background-color: #DC3545; padding: 5px; border: none;'>Delete</button></a>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-                echo "</tbody>";
-                echo "</table>";
+// Displaying the fetched data in a table format
+echo "<table class='table'>";
+echo "<thead>";
+echo "<tr>";
+echo "<th>No</th>";
+echo "<th>Payment Method ID</th>";
+echo "<th>Payment Method Name</th>";
+echo "<th>Actions</th>";
+echo "</tr>";
+echo "</thead>";
+echo "<tbody>";
 
-                // Closing the database connection
-                mysqli_close($con);
-                ?>
+$r = 1; // Counter for numbering rows
+foreach ($result as $row) {
+    echo "<tr>";
+    echo "<td>".$r++."</td>";
+    echo "<td>".$row["PaymentMethodID"]."</td>";
+    echo "<td>".$row["PaymentMethodName"]."</td>";
+    echo "<td>";
+    echo "<a href='TestMethodEditForm.php?id=".$row["PaymentMethodID"]."'><button style='color: white; border-radius: 5px; background-color: #00868D; padding: 5px; border: none;'>Edit</button></a> ";
+    echo "<a href='TestMethodDeleteForm.php?id=".$row["PaymentMethodID"]."'><button style='color: white; border-radius: 5px; background-color: #DC3545; padding: 5px; border: none;'>Delete</button></a>";
+    echo "</td>";
+    echo "</tr>";
+}
+
+echo "</tbody>";
+echo "</table>";
+
+// Closing the database connection
+mysqli_close($con);
+?>
+
             </div>
-            <div style="width: 100%; display: flex; justify-content: flex-end;">
-                <a href="TestMethodInsertForm.php">
-                    <button style="color: white; border-radius: 10px; background-color: #00868D; padding: 10px;">Insert New Payment Method</button>
-                </a>               
+            <div style="width: 100%; display: flex;">
+                <a href="TestMethodDashboard.php" style="text-decoration: none;">
+                <button style="color: white; border-radius: 10px; background-color: #00868D; padding: 10px; width: 102px; margin-top: 20px; border: none; margin-left: auto;">Back</button>
+                </a>
             </div>
         </div>
     </div>

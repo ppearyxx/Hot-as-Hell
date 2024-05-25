@@ -52,8 +52,11 @@
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Update Payment Method</h1>
                 <div>
-                    <p>Search</p>
-                    <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                <form method="GET" action="TestMethodSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
                 </div>
             </div>
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
@@ -94,8 +97,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Update payment method details in the database
     $updateQuery = "UPDATE payment_method SET PaymentMethodName = '$updatedPaymentMethodName' WHERE PaymentMethodID = '$paymentMethodID'";
+    
     if (mysqli_query($con, $updateQuery)) {
-        echo "Payment Method details updated successfully.";
+        // Store success message in session
+        $_SESSION['success_message'] = "Payment Method details updated successfully.";
+
+        // Redirect to the same page to prevent displaying old data
+        header("Location: {$_SERVER['PHP_SELF']}?id=$paymentMethodID"); 
+        exit();
     } else {
         echo "Error updating payment method details: " . mysqli_error($con);
     }
