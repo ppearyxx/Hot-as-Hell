@@ -3,6 +3,8 @@
 // Start session
 session_start();
 
+$con = mysqli_connect("localhost", "root", "", "hot_as_hell");
+
 // Check if user is logged in
 if (!isset($_SESSION["FirstName"])) {
     // Redirect to login page if user is not logged in
@@ -14,6 +16,82 @@ if (!isset($_SESSION["FirstName"])) {
 $username = $_SESSION["FirstName"];
 $guest_id = $_SESSION["GuestID"];
 
+// Query to fetch reservation details based on guest ID
+$sql = "SELECT 
+r.ReservationID,
+r.BookingNo,
+r.RoomID,
+r.CheckInDate,
+r.CheckInTime,
+r.CheckOutDate,
+r.CheckOutTime,
+bd.PaymentID,
+bd.SpecialRequests
+FROM 
+reservation r
+JOIN 
+booking_details bd ON r.BookingNo = bd.BookingNo
+WHERE 
+bd.GuestID = '$guest_id';
+";
+$result = mysqli_query($con, $sql);
+
+$reservationDetails = array();
+
+// Fetch reservation details into an array
+while ($row = mysqli_fetch_assoc($result)) {
+    $reservationDetails[] = $row;
+}
+
+// Check if the form is submitted for updating the room status
+if (isset($_POST["roomID"])) {
+  // Get the roomID from the POST data
+  $roomID = $_POST["roomID"];
+
+  date_default_timezone_set('Asia/Bangkok');
+  $currentTime = date('H:i:s'); // Format: YYYY-MM-DD HH:MM:SS
+  echo $currentTime;
+  // Perform the database update to change the room status
+  $updateRoomStatusQuery = "UPDATE room SET RoomStatus = 'Not Available' WHERE RoomID = '$roomID'";
+   
+  // Perform the database update to change the checkin time
+  $updateCheckInQuery = "UPDATE reservation SET CheckInTime = '$currentTime' WHERE RoomID = '$roomID'";
+  mysqli_query($con, $updateRoomStatusQuery);
+  mysqli_query($con, $updateCheckInQuery);
+
+  // Redirect back to the page or send a response message
+  header("Location: ".$_SERVER['PHP_SELF']); // Redirect to the same page after update
+  exit();
+}
+
+// Check if the form is submitted for updating the room status
+if (isset($_POST["room"])) {
+  // Get the roomID from the POST data
+  $roomID = $_POST["room"];
+
+  date_default_timezone_set('Asia/Bangkok');
+  $currentDate = date('Y-m-d');
+  $currentTime = date('H:i:s'); // Format: YYYY-MM-DD HH:MM:SS
+  echo $currentTime;
+  
+  // Perform the database update to change the room status
+  $updateRoomStatusQuery = "UPDATE room SET RoomStatus = 'Available' WHERE RoomID = '$roomID'";
+   
+  // Perform the database update to change the checkout time and date
+  $updateCheckOutQuery = "UPDATE reservation SET CheckOutTime = '$currentTime', CheckOutDate = '$currentDate' WHERE RoomID = '$roomID'";
+  
+  mysqli_query($con, $updateRoomStatusQuery);
+  mysqli_query($con, $updateCheckOutQuery);
+
+  // Redirect back to the page or send a response message
+  header("Location: ".$_SERVER['PHP_SELF']); // Redirect to the same page after update
+  exit();
+}
+
+
+
+// Close database connection
+mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -138,6 +216,69 @@ div.desc {
       background-color: lightgrey;
     }
 
+  /* Modal box styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #171A33; /* Background color of the modal */
+  color: white; /* Text color */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 80%; /* Could be more or less, depending on screen size */
+  margin: 5% auto; /* 5% from the top and centered */
+  padding: 20px;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #720202;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add some margin to the bottom of the modal */
+.modal-content {
+  margin-bottom: 20px;
+}
+
+/* Table styling */
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+  border: 1px solid #720202; /* Table border color */
+  padding: 8px;
+  text-align: left;
+}
+
+/* Header column background color */
+.modal-content th {
+  background-color: #720202;
+}
+
+
     </style>
   </head>
   <body>
@@ -162,6 +303,15 @@ div.desc {
         </nav>
     </header>
 
+    <!-- Add a modal for displaying reservation details -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="reservationDetails">
+      <!-- Reservation details will be displayed here -->
+    </div>
+  </div>
+</div>
 
     <!--Room Display Section-->
     <br><br><br><br>
@@ -178,8 +328,8 @@ div.desc {
             <div class="details">
               <!-- Room details here -->
               <p>Price: THB 900</p>
-              <p>Beds: King-size</p>
-              <p>Amenities: Pool, City View</p>
+              <p>Beds: Queen-size</p>
+              <p>Amenities: Wifi, Television, City View</p>
             </div>
           </div>
 
@@ -198,8 +348,8 @@ div.desc {
             <div class="details">
               <!-- Room details here -->
               <p>Price: THB 1500</p>
-              <p>Beds: King-size</p>
-              <p>Amenities: Pool, City View</p>
+              <p>Beds: Double Beds</p>
+              <p>Amenities: Television, Pool, City View</p>
             </div>
           </div>
 
@@ -332,6 +482,212 @@ div.desc {
           }
       }
 
+
+      let checkInSuccess = localStorage.getItem('checkInSuccess') ? JSON.parse(localStorage.getItem('checkInSuccess')) : 0;
+
+      function checkOut() {
+        var selectedRow = document.querySelector(".selected");
+          checkInSuccess = localStorage.getItem('checkInSuccess') ? JSON.parse(localStorage.getItem('checkInSuccess')) : 0;
+          if (checkInSuccess === 1) {
+              checkInSuccess = 0;
+              localStorage.setItem('checkInSuccess', JSON.stringify(checkInSuccess)); // Update localStorage
+              alert("Successfully checked out. Thank you for staying here!");
+
+              // Get the check-in date from the selected row
+              var checkOutDate = selectedRow.cells[3].textContent;
+              var roomID = selectedRow.cells[1].textContent;
+              var reservationID = selectedRow.cells[0].textContent;
+
+               // Create a form element
+              var form = document.createElement("form");
+              form.method = "post";
+              form.action = "reservation.php";
+
+              // Create an input field for roomID
+              var roomIDInput = document.createElement("input");
+              roomIDInput.type = "hidden";
+              roomIDInput.name = "room";
+              roomIDInput.value = roomID;
+
+              // Append the input field to the form
+              form.appendChild(roomIDInput);
+
+              // Append the form to the document body
+              document.body.appendChild(form);
+
+              // Submit the form
+              form.submit();
+
+              return;
+
+          } else {
+              alert("Please check-in first");
+          }
+      }
+
+      function checkIn() {
+  var selectedRow = document.querySelector(".selected");
+
+  // Get the check-in date from the selected row
+  var checkInDate = selectedRow.cells[2].textContent;
+  var roomID = selectedRow.cells[1].textContent;
+  var reservationID = selectedRow.cells[0].textContent;
+
+  // Get the current date
+  var currentDate = new Date();
+
+  // Convert the check-in date from the table row into a Date object
+  var checkInDateTime = new Date(checkInDate);
+
+  // Check if the check-in date is today (compare year, month, and day only)
+  if (
+    currentDate.getFullYear() === checkInDateTime.getFullYear() &&
+    currentDate.getMonth() === checkInDateTime.getMonth() &&
+    currentDate.getDate() === checkInDateTime.getDate()
+  ) {
+
+    // Get the current time
+    var currentHours = currentDate.getHours();
+
+    if (currentHours > 13){
+       // If the check-in date matches the current date, mark the row as checked-in
+      selectedRow.style.backgroundColor = "lightgreen";
+      checkInSuccess = 1;
+      localStorage.setItem('checkInSuccess', JSON.stringify(checkInSuccess)); // Update localStorage
+      // Display a success message
+      alert("Successfully checked in. Welcome to the hotel!");
+      
+       // Create a form element
+      var form = document.createElement("form");
+      form.method = "post";
+      form.action = "reservation.php";
+
+      // Create an input field for roomID
+      var roomIDInput = document.createElement("input");
+      roomIDInput.type = "hidden";
+      roomIDInput.name = "roomID";
+      roomIDInput.value = roomID;
+
+      // Append the input field to the form
+      form.appendChild(roomIDInput);
+
+      // Append the form to the document body
+      document.body.appendChild(form);
+
+      // Submit the form
+      form.submit();
+
+      return;
+    } 
+    
+    else {
+      alert("Please check in after 12pm!");
+      return;
+    }
+  }
+
+  // Check if the check-in date is in the future
+  if (checkInDateTime > currentDate) {
+    alert("Please wait until the check-in date to check in.");
+    return;
+  }
+
+  // Check if the check-in date is in the past
+  if (checkInDateTime < currentDate) {
+    // Expired reservation
+    selectedRow.style.textDecoration = "line-through";
+    alert("Your reservation has expired.");
+    return;
+  }
+}
+
+
+function selectRow(row) {
+  // Remove the active class from all rows
+  var rows = document.querySelectorAll("#reservationDetails table tr");
+  rows.forEach(function(row) {
+    row.style.backgroundColor = ""; // Reset background color for all rows
+    row.addEventListener("click", function() {
+      // Remove selected class from all rows
+      rows.forEach(function(row) {
+        row.classList.remove("selected");
+      });
+      // Add selected class to the clicked row
+      row.classList.add("selected");
+    });
+  });
+
+  // Add background color to the clicked row
+  row.style.backgroundColor = "blue";
+  row.style.cursor = "pointer";
+
+  // Enable check-in and check-out buttons
+  var checkInBtn = document.getElementById("checkInBtn");
+  var checkOutBtn = document.getElementById("checkOutBtn");
+  checkInBtn.style.opacity = "1";
+  checkOutBtn.style.opacity = "1";
+  checkInBtn.disabled = false;
+  checkOutBtn.disabled = false;
+}
+
+ // Function to display reservation details
+ function displayReservationDetails() {
+    var reservationDetails = <?php echo json_encode($reservationDetails); ?>;
+    var modalContent = document.getElementById("reservationDetails");
+
+    // Check if reservation details exist
+    if (reservationDetails.length > 0) {
+      // Construct HTML for displaying reservation details
+      var html = "<h2>Reserved Rooms</h2>";
+      html += "<table>";
+      html += "<tr><th>Reservation ID</th><th>Room ID</th><th>Check-In Date</th><th>Check-Out Date</th><th>Payment ID</th><th>Special Requests</th></tr>";
+      reservationDetails.forEach(function(detail) {
+        html += "<tr onclick='selectRow(this)'>";
+        html += "<td>" + detail.ReservationID + "</td>";
+        html += "<td>" + detail.RoomID + "</td>";
+        html += "<td>" + detail.CheckInDate + "</td>";
+        html += "<td>" + detail.CheckOutDate + "</td>";
+        html += "<td>" + detail.PaymentID + "</td>";
+        html += "<td>" + detail.SpecialRequests + "</td>";
+        html += "</tr>";
+      });
+      html += "</table>";
+      html += " <div style='display: flex; justify-content: space-around;'>";
+      html += " <button id='checkInBtn' onclick='checkIn()' style='width: 20vw; opacity: 0.3;' disabled>Check-in</button>";
+      html += " <button id='checkOutBtn' onclick='checkOut()' style='width: 20vw; opacity: 0.3;' disabled>Check-out</button>";
+      html += " </div>";
+      modalContent.innerHTML = html;
+    } else {
+      modalContent.innerHTML = "<p>No reserved rooms found.</p>";
+    }
+  }
+
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementsByClassName("user-button")[0];
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "block";
+    displayReservationDetails();
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
     </script>
   </body>
 </html>
