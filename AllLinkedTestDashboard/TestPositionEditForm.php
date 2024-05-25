@@ -51,7 +51,14 @@
         <div class="right">
             <div style="display: flex; justify-content: space-between; color: white;">
                 <h1>Update Position Details</h1>
-            </div>
+                <div>
+                <form method="GET" action="TestPositionSearchForm2.php">
+                        <p>Search</p>
+                        <input type="text" name="search" id="search" style="background-color: white; border: 1px solid black; border-radius: 10px; padding: 5px; height: 30px;">
+                        <button type="submit" style="background-color: #00868D; color: white; border: none; border-radius: 5px; padding: 5px 10px;">Search</button>
+                    </form>
+                </div>
+            </div>            
             <div style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
 
                 <?php
@@ -92,8 +99,14 @@
 
                     // Update position details in the database
                     $updateQuery = "UPDATE employee_position SET Position = '$updatedPositionName', Salary = '$updatedSalary' WHERE PositionID = '$positionID'";
+                    
                     if (mysqli_query($con, $updateQuery)) {
-                        echo "<div style='color: green; text-align: center;'>Position details updated successfully.</div>";
+                        // Store success message in session
+                        $_SESSION['success_message'] = "Position details updated successfully.";
+                
+                        // Redirect to the same page to prevent displaying old data
+                        header("Location: {$_SERVER['PHP_SELF']}?id=$positionID"); 
+                        exit();
                     } else {
                         echo "Error updating position details: " . mysqli_error($con);
                     }
