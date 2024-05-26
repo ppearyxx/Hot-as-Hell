@@ -198,11 +198,8 @@ CREATE TABLE `payment_method` (
 ALTER TABLE `payment_method`
   ADD PRIMARY KEY (`PaymentMethodID`);
 
-ALTER TABLE `reservation`
+ALTER TABLE `payment`
   ADD CONSTRAINT `paymentmethod_ibfk_1` FOREIGN KEY (`PaymentMethodID`) REFERENCES `payment_method` (`PaymentMethodID`) ON DELETE CASCADE ON UPDATE CASCADE;
---
--- Dumping data for table `payment_method`
---
 
 INSERT INTO `payment_method` (`PaymentMethodID`, `PaymentMethodName`) VALUES
 ('PM001', 'Mastercard'),
