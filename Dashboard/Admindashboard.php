@@ -107,7 +107,7 @@ mysqli_close($con);
             width: 15vw;
             height: 6vh;
             border-radius: 0.5em;
-            color: white;
+            color: black;
             margin-left: 20vw;
             padding: 0vw;
             margin-top: 1vw;
@@ -164,6 +164,8 @@ mysqli_close($con);
         .chart-container {
             width: 30%;
             margin: 20px;
+            background-color: #F8F1E7;
+            border-radius: 10px;
         }
         p{
             font-size: 3rem;
@@ -272,7 +274,7 @@ mysqli_close($con);
                     legend: {
                         position: 'bottom',
                         labels: {
-                            color: 'white', // Custom legend color
+                            color: 'black', // Custom legend color
                             font: {
                                 size: 16
                             }
@@ -281,7 +283,7 @@ mysqli_close($con);
                     title: {
                         display: true,
                         text: 'Room Reservation Status',
-                        color: 'white', // Custom title color
+                        color: 'black', // Custom title color
                         font: {
                             size: 18
                         }
@@ -323,7 +325,7 @@ mysqli_close($con);
                     legend: {
                         position: 'bottom',
                         labels: {
-                            color: 'white', // Custom legend color
+                            color: 'black', // Custom legend color
                             font: {
                                 size: 16
                             }
@@ -332,7 +334,7 @@ mysqli_close($con);
                     title: {
                         display: true,
                         text: 'Room Type Reservation Distribution',
-                        color: 'white', // Custom title color
+                        color: 'black', // Custom title color
                         font: {
                             size: 18
                         }
@@ -375,26 +377,26 @@ mysqli_close($con);
                         title: {
                             display: true,
                             text: 'Date',
-                            color: 'white',
+                            color: 'black',
                             font: {
                                 size: 16
                             }
                         },
                         ticks: {
-                            color: 'white'
+                            color: 'black'
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Number of Reservations',
-                            color: 'white',
+                            text: 'Reservations',
+                            color: 'black',
                             font: {
                                 size: 16
                             }
                         },
                         ticks: {
-                            color: 'white'
+                            color: 'black'
                         }
                     }
                 },
@@ -405,7 +407,7 @@ mysqli_close($con);
                     title: {
                         display: true,
                         text: 'Daily Number of Reservations',
-                        color: 'white',
+                        color: 'black',
                         font: {
                             size: 18
                         }
@@ -435,26 +437,26 @@ mysqli_close($con);
                         title: {
                             display: true,
                             text: 'Number of Bookings',
-                            color: 'white',
+                            color: 'black',
                             font: {
                                 size: 16
                             }
                         },
                         ticks: {
-                            color: 'white'
+                            color: 'black'
                         }
                     },
                     y: {
                         title: {
                             display: true,
                             text: 'Guest Name',
-                            color: 'white',
+                            color: 'black',
                             font: {
                                 size: 16
                             }
                         },
                         ticks: {
-                            color: 'white'
+                            color: 'black'
                         }
                     }
                 },
@@ -465,7 +467,7 @@ mysqli_close($con);
                     title: {
                         display: true,
                         text: 'Number of Bookings per Guest',
-                        color: 'white',
+                        color: 'black',
                         font: {
                             size: 18
                         }
