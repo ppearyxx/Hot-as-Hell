@@ -72,6 +72,28 @@ CREATE TABLE `employee` (
   `Gender` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`EmployeeID`),
+  ADD KEY `PositionID` (`PositionID`);
+
+CREATE TABLE `employee_position` (
+  `PositionID` varchar(4) NOT NULL,
+  `Position` varchar(30) NOT NULL,
+  `Salary` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `employee_position`
+  ADD PRIMARY KEY (`PositionID`);
+
+INSERT INTO `employee_position` (`PositionID`, `Position`, `Salary`) VALUES
+('P001', 'Manager', '250000'),
+('P002', 'Receptionist', '50000'),
+('P003', 'CEO', '300000'),
+('P004', 'Managing Director', '280000'),
+('P005', 'Assistant Manager', '200000'),
+('P006', 'Human Resource', '150000'),
+('P007', 'Housekeeper', '20000');
+
 --
 -- Dumping data for table `employee`
 --
@@ -90,30 +112,7 @@ INSERT INTO `employee` (`EmployeeID`, `FirstName`, `LastName`, `PositionID`, `Pa
 ('E65070503445', 'Andrew', 'Garcia', 'P004', 'GarciaA1039', '+668907654', '1989-10-17', 'M'),
 ('E65070503446', 'Olivia', 'Hernandez', 'P005', 'Olivia09582H', '+669276543', '1990-08-08', 'F');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `employee_position`
---
-
-CREATE TABLE `employee_position` (
-  `PositionID` varchar(4) NOT NULL,
-  `Position` varchar(30) NOT NULL,
-  `Salary` varchar(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `employee_position`
---
-
-INSERT INTO `employee_position` (`PositionID`, `Position`, `Salary`) VALUES
-('P001', 'Manager', '250000'),
-('P002', 'Receptionist', '50000'),
-('P003', 'CEO', '300000'),
-('P004', 'Managing Director', '280000'),
-('P005', 'Assistant Manager', '200000'),
-('P006', 'Human Resource', '150000'),
-('P007', 'Housekeeper', '20000');
 
 -- --------------------------------------------------------
 
@@ -335,17 +334,8 @@ ALTER TABLE `booking_details`
   ADD PRIMARY KEY (`BookingNo`);
 
 --
--- Indexes for table `employee`
 --
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`EmployeeID`),
-  ADD KEY `PositionID` (`PositionID`);
 
---
--- Indexes for table `employee_position`
---
-ALTER TABLE `employee_position`
-  ADD PRIMARY KEY (`PositionID`);
 
 --
 -- Indexes for table `guest`
