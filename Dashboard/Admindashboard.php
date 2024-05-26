@@ -44,7 +44,7 @@ while ($row = mysqli_fetch_assoc($roomTypeResult)) {
 // Fetch daily reservations count
 $dailyReservationsQuery = "SELECT DATE(CheckInDate) as ReservationDate, COUNT(*) as ReservationCount
                            FROM Reservation
-                           GROUP BY DATE(ReservationDate)
+                           GROUP BY DATE(CheckInDate)
                            ORDER BY ReservationDate";
 $dailyReservationsResult = mysqli_query($con, $dailyReservationsQuery);
 
@@ -72,6 +72,19 @@ while ($row = mysqli_fetch_assoc($guestBookingsResult)) {
     $bookingCounts[] = $row['BookingCount'];
 }
 
+// Fetch total guests, checked-in guests, and checked-out guests
+$totalGuestsQuery = "SELECT COUNT(*) as totalGuests FROM Guest";
+$checkedInGuestsQuery = "SELECT COUNT(*) as checkedInGuests FROM Reservation WHERE CheckInDate IS NOT NULL AND CheckOutDate IS NULL";
+$checkedOutGuestsQuery = "SELECT COUNT(*) as checkedOutGuests FROM Reservation WHERE CheckOutDate IS NOT NULL";
+
+$totalGuestsResult = mysqli_query($con, $totalGuestsQuery);
+$checkedInGuestsResult = mysqli_query($con, $checkedInGuestsQuery);
+$checkedOutGuestsResult = mysqli_query($con, $checkedOutGuestsQuery);
+
+$totalGuests = mysqli_fetch_assoc($totalGuestsResult)['totalGuests'];
+$checkedInGuests = mysqli_fetch_assoc($checkedInGuestsResult)['checkedInGuests'];
+$checkedOutGuests = mysqli_fetch_assoc($checkedOutGuestsResult)['checkedOutGuests'];
+
 // Close database connection
 mysqli_close($con);
 ?>
@@ -87,7 +100,7 @@ mysqli_close($con);
     <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
     
     <style>
-      .user-button {
+        .user-button {
             display: flex;
             align-items: center;
             background-color: #171A33;
@@ -107,12 +120,64 @@ mysqli_close($con);
             margin-left: 1.5vw;
         }
 
+        .report-header {
+            background-color: #720202;
+            color: white;
+            padding: 20px;
+            padding-top:3vw;
+            margin-top:3vw;
+            margin-left:1.5vw;
+            margin-right:1.5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .report-header img {
+            height: 100px;
+            background-color: #F8F1E7;
+        }
+
+        .report-container {
+            border: 2px solid #720202;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .summary-boxes {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .summary-box {
+            border: 1px solid #720202;
+            padding: 0px;
+            color:  #171A33;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            margin: 10px;
+            background-color: #F8F1E7;
+        }
+
         .chart-container {
             width: 30%;
-            margin: auto;
-            margin-top: 4vw;
-            padding: 2em;
+            margin: 20px;
         }
+        p{
+            font-size: 3rem;
+            color: #720202;
+        }
+
+        .charts-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+     
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -137,23 +202,43 @@ mysqli_close($con);
       </nav>
     </header>
 
-    <div style="display:flex;">
-        <div class="chart-container">
-            <canvas id="roomStatusChart"></canvas>
-        </div>
-
-        <div class="chart-container">
-            <canvas id="roomTypeChart"></canvas>
-        </div>
+    <div class="report-header">
+        <img src="../images/logo.png" alt="Logo">
+        <h1>Hotel Analysis Report</h1>
     </div>
 
-    <div style="display:flex;">
-        <div class="chart-container">
-            <canvas id="dailyReservationsChart"></canvas>
+    <div class="report-container">
+        <div class="summary-boxes">
+            <div class="summary-box">
+                <h2>Total Guests</h2>
+                <p><?php echo $totalGuests; ?></p>
+            </div>
+            <div class="summary-box">
+                <h2>Checked-in Guests</h2>
+                <p><?php echo $checkedInGuests; ?></p>
+            </div>
+            <div class="summary-box">
+                <h2>Checked-out Guests</h2>
+                <p><?php echo $checkedOutGuests; ?></p>
+            </div>
         </div>
 
-        <div class="chart-container">
-            <canvas id="guestBookingChart"></canvas>
+        <div class="charts-row">
+            <div class="chart-container">
+                <canvas id="roomStatusChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="roomTypeChart"></canvas>
+            </div>
+        </div>
+
+        <div class="charts-row">
+            <div class="chart-container">
+                <canvas id="dailyReservationsChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="guestBookingChart"></canvas>
+            </div>
         </div>
     </div>
 
