@@ -266,7 +266,38 @@ CREATE TABLE `room` (
   `RoomStatus` text NOT NULL DEFAULT 'Available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`RoomID`),
+  ADD KEY `RoomType` (`RoomType`);
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_details`
+--
+
+CREATE TABLE `room_details` (
+  `RoomType` varchar(4) NOT NULL,
+  `RoomDetail` text NOT NULL,
+  `RoomPrice` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `room_details`
+  ADD PRIMARY KEY (`RoomType`);
+
+ALTER TABLE `room`
+ADD CONSTRAINT `fk_room_room_type` FOREIGN KEY (`RoomType`) REFERENCES `room_details` (`RoomType`) ON DELETE CASCADE ON UPDATE CASCADE;
+--
+-- Dumping data for table `room_details`
+--
+
+INSERT INTO `room_details` (`RoomType`, `RoomDetail`, `RoomPrice`) VALUES
+('DLX', 'Deluxe room with river view and balcony', 1500),
+('FAM', 'Family suite with multiple bedrooms and living area', 2800),
+('STD', 'Standard room with city view and basic amenities', 900),
+('SUI', 'Luxury suite with private pool and panoramic city view', 4800);
+
 -- Dumping data for table `room`
 --
 
@@ -292,27 +323,6 @@ INSERT INTO `room` (`RoomID`, `RoomType`, `EmployeeID`, `RoomStatus`) VALUES
 ('R1019', 'STD', 'E65070503437', 'Available'),
 ('R1020', 'SUI', 'E65070503445', 'Not Available');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `room_details`
---
-
-CREATE TABLE `room_details` (
-  `RoomType` varchar(4) NOT NULL,
-  `RoomDetail` text NOT NULL,
-  `RoomPrice` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `room_details`
---
-
-INSERT INTO `room_details` (`RoomType`, `RoomDetail`, `RoomPrice`) VALUES
-('DLX', 'Deluxe room with river view and balcony', 1500),
-('FAM', 'Family suite with multiple bedrooms and living area', 2800),
-('STD', 'Standard room with city view and basic amenities', 900),
-('SUI', 'Luxury suite with private pool and panoramic city view', 4800);
 
 --
 -- Indexes for dumped tables
@@ -369,17 +379,6 @@ ALTER TABLE `reservation`
   ADD KEY `BookingNo` (`BookingNo`);
 
 --
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`RoomID`),
-  ADD KEY `RoomType` (`RoomType`);
-
---
--- Indexes for table `room_details`
---
-ALTER TABLE `room_details`
-  ADD PRIMARY KEY (`RoomType`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -420,12 +419,10 @@ ALTER TABLE `employee`
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`BookingNo`) REFERENCES `booking_details` (`BookingNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `room`
---
-ALTER TABLE `room`
-  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`RoomType`) REFERENCES `room_details` (`RoomType`);
-COMMIT;
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
