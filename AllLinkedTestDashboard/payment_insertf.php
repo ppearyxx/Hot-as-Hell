@@ -45,22 +45,14 @@
         <div class="left">
             <ul>
                 <li><a href="employee.php"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Employee</a></li>
-                <li><a href="TestPositionDashboard.php"><i class="fa-solid fa-briefcase"
-                            style="margin-right: 10px;"></i>Employee Position</a></li>
-                <li><a href="TestRoomDashBoard.php"><i class="fa-solid fa-bed" style="margin-right: 10px;"></i>Room</a>
-                </li>
-                <li><a href="TestRoomDetailDashBoard.php"><i class="fa-solid fa-hotel"
-                            style="margin-right: 10px;"></i>Room Detail</a></li>
-                <li><a href="reservation.php"><i class="fa-solid fa-user"
-                            style="margin-right: 10px;"></i>Reservation</a></li>
-                <li><a href="guest.php"><i class="fa-solid fa-book" style="margin-right: 10px;"></i>Guest
-                        Information</a></li>
-                <li class="highlight"><a href="payment.php"><i class="fa-brands fa-paypal"
-                            style="margin-right: 10px;"></i>Payment</a></li>
-                <li><a href="TestMethodDashboard.php"><i class="fa-solid fa-coins"
-                            style="margin-right: 10px;"></i>Payment Method</a></li>
-                <li><a href="TestPromotionDashboard.php"><i class="fa-solid fa-desktop"
-                            style="margin-right: 10px;"></i>Promotion</a></li>
+                <li><a href="TestPositionDashboard.php"><i class="fa-solid fa-briefcase" style="margin-right: 10px;"></i>Employee Position</a></li>
+                <li><a href="TestRoomDashBoard.php"><i class="fa-solid fa-bed" style="margin-right: 10px;"></i>Room</a></li>
+                <li><a href="TestRoomDetailDashBoard.php"><i class="fa-solid fa-hotel" style="margin-right: 10px;"></i>Room Detail</a></li>
+                <li><a href="reservation.php"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Reservation</a></li>
+                <li><a href="guest.php"><i class="fa-solid fa-book" style="margin-right: 10px;"></i>Guest Information</a></li>
+                <li class="highlight"><a href="payment.php"><i class="fa-brands fa-paypal" style="margin-right: 10px;"></i>Payment</a></li>
+                <li><a href="TestMethodDashboard.php"><i class="fa-solid fa-coins" style="margin-right: 10px;"></i>Payment Method</a></li>
+                <li><a href="TestPromotionDashboard.php"><i class="fa-solid fa-desktop" style="margin-right: 10px;"></i>Promotion</a></li>
             </ul>
         </div>
         <div class="right">
@@ -76,7 +68,6 @@
                 style="margin-top: 20px; border-radius: 10px; background-color: white; padding: 20px; min-height: 500px; height: 100%;">
 
                 <div style="text-align: center; padding-top: 10px;">
-                    <!-- Display error or success messages -->
                     <?php if (!empty($error_message)): ?>
                         <div style="color: red;"><?php echo $error_message; ?></div>
                     <?php elseif (!empty($success_message)): ?>
@@ -86,20 +77,18 @@
 
                 <form name="inpfrm" method="post" action="">
                     <div class="mb-3 row">
-                        <label for="earnest_pay_check" class="col-sm-2 col-form-label text-end">Earnest Pay
-                            Check:</label>
+                        <label for="earnest_pay_check" class="col-sm-2 col-form-label text-end">Earnest Pay Check:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="earnest_pay_check" name="earnest_pay_check"
-                                placeholder="Enter earnest pay check"
+                            <input type="text" class="form-control" id="earnest_pay_check" name="earnest_pay_check" 
+                                placeholder="Enter Earnest Pay Check"
                                 value="<?php echo isset($_POST['earnest_pay_check']) ? $_POST['earnest_pay_check'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="payment_method_id" class="col-sm-2 col-form-label text-end">Payment Method
-                            ID:</label>
+                        <label for="payment_method_id" class="col-sm-2 col-form-label text-end">Payment Method ID:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="payment_method_id" name="payment_method_id"
-                                placeholder="Enter payment method ID"
+                                placeholder="Enter Payment Method ID"
                                 value="<?php echo isset($_POST['payment_method_id']) ? $_POST['payment_method_id'] : ''; ?>">
                         </div>
                     </div>
@@ -107,7 +96,7 @@
                         <label for="promotion_id" class="col-sm-2 col-form-label text-end">Promotion ID:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="promotion_id" name="promotion_id"
-                                placeholder="Enter promotion ID"
+                                placeholder="Enter Promotion ID"
                                 value="<?php echo isset($_POST['promotion_id']) ? $_POST['promotion_id'] : ''; ?>">
                         </div>
                     </div>
@@ -115,25 +104,21 @@
                         <label for="total_amount" class="col-sm-2 col-form-label text-end">Total Amount:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="total_amount" name="total_amount"
-                                placeholder="Enter total amount"
+                                placeholder="Enter Total Amount"
                                 value="<?php echo isset($_POST['total_amount']) ? $_POST['total_amount'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="earnest_pay_datetime" class="col-sm-2 col-form-label text-end">Earnest Pay
-                            Datetime:</label>
+                        <label for="earnest_pay_datetime" class="col-sm-2 col-form-label text-end">Earnest Pay Datetime:</label>
                         <div class="col-sm-10">
-                            <input type="datetime-local" class="form-control" id="earnest_pay_datetime"
-                                name="earnest_pay_datetime"
+                            <input type="datetime-local" class="form-control" id="earnest_pay_datetime" name="earnest_pay_datetime"
                                 value="<?php echo isset($_POST['earnest_pay_datetime']) ? $_POST['earnest_pay_datetime'] : ''; ?>">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="total_pay_datetime" class="col-sm-2 col-form-label text-end">Total Pay
-                            Datetime:</label>
+                        <label for="total_pay_datetime" class="col-sm-2 col-form-label text-end">Total Pay Datetime:</label>
                         <div class="col-sm-10">
-                            <input type="datetime-local" class="form-control" id="total_pay_datetime"
-                                name="total_pay_datetime"
+                            <input type="datetime-local" class="form-control" id="total_pay_datetime" name="total_pay_datetime"
                                 value="<?php echo isset($_POST['total_pay_datetime']) ? $_POST['total_pay_datetime'] : ''; ?>">
                         </div>
                     </div>
@@ -145,14 +130,9 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-</body>
-
-</html>
-</div>
 </body>
 
 </html>
