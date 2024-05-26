@@ -133,6 +133,14 @@
                             </select>
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="position_id" class="col-sm-2 col-form-label text-end">Room ID:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="room_id" name="room_id"
+                                placeholder="Enter room ID"
+                                value="<?php echo isset($_POST['room_id']) ? $_POST['room_id'] : ''; ?>">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col text-end">
                             <button type="submit" class="btn-custom">Insert</button>
