@@ -1,0 +1,91 @@
+
+
+body{
+    background-color: #171A33;
+    font-family: outfit;
+    color: white;
+}
+
+.login{
+    margin-left: 40vw;
+    margin-top: 10vw;
+}
+
+input{
+    background-color: #DCDDE0;
+    border-radius: 0.8em;
+    padding: 1vw;
+    color: black;
+    border: none;
+    margin-top: 2vw;
+    width: 15vw;
+}
+
+input:focus{
+    outline: none; 
+    box-shadow: 0 0 10px rgb(231, 117, 117); 
+    
+}
+
+section{
+    display: block;
+}
+
+body {
+  background-color: #171a33;
+  font-family: "Outfit", sans-serif;
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  margin-right: 43vw;
+  margin-bottom: 0vw;
+  font-family: "Outfit", sans-serif;
+}
+
+p {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 15vw;
+  font-family: "Outfit", sans-serif;
+}
+
+span {
+  color: #d6961b;
+  margin-left: 1vw;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+}
+
+button {
+  background-color: #720202;
+  border-radius: 0.5em;
+  width: 8vw;
+  padding: 0.5vw;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  margin: 2vw 1vw 0vw 0vw;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+}
+
+hr{
+    margin-left: -20vw;
+    width: 100%;
+}
+
+.signup{
+    text-decoration: none;
+    margin-left: -0.5vw;
+}
+
+span{
+    color: #D6961B;
+    margin-left: 1vw;
+    cursor: pointer;
+}
