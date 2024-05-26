@@ -177,15 +177,12 @@ INSERT INTO `historyreservation` (`referenceno`, `guestid`, `cin`, `cout`, `rcin
 CREATE TABLE `payment` (
   `PaymentID` int(11) NOT NULL,
   `EarnestPayCheck` decimal(10,2) DEFAULT NULL,
-  `PaymentMethodID` int(11) DEFAULT NULL,
+  `PaymentMethodID` varchar(5) DEFAULT NULL,
   `PromotionID` int(11) DEFAULT NULL,
   `TotalAmount` decimal(10,2) DEFAULT NULL,
   `EarnestPayDatetime` datetime DEFAULT NULL,
   `TotalPayDatetime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE `payment`
-  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`PaymentID`);
