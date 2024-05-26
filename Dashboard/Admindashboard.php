@@ -278,7 +278,7 @@ mysqli_close($con);
                 labels: dates,
                 datasets: [{
                     label: 'Daily Reservations',
-                    data: reservationCounts,
+                    data: reservationCounts + 3,
                     backgroundColor: '#FF6384',
                     hoverOffset: 4
                 }]
