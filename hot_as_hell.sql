@@ -63,8 +63,7 @@ CREATE TABLE `booking_details` (
 ALTER TABLE `booking_details`
   ADD PRIMARY KEY (`BookingNo`);
 
-ALTER TABLE `booking_details`
-  ADD CONSTRAINT `booking_details_ibfk_1` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE,
+ALTER TABLE `booking_details` 
   ADD CONSTRAINT `fk_guest_id` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `booking_details` (`BookingNo`, `BookingDate`, `BookingTime`, `GuestID`, `PaymentID`, `AdultCount`, `ChildrenCount`, `SpecialRequests`) VALUES
