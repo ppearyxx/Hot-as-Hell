@@ -184,17 +184,22 @@ CREATE TABLE `payment` (
   `TotalPayDatetime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+ALTER TABLE `payment`
+  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- Table structure for table `payment_method`
---
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`PaymentID`);
 
 CREATE TABLE `payment_method` (
   `PaymentMethodID` varchar(5) NOT NULL,
   `PaymentMethodName` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `payment_method`
+  ADD PRIMARY KEY (`PaymentMethodID`);
+
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `paymentmethod_ibfk_1` FOREIGN KEY (`PaymentMethodID`) REFERENCES `payment_method` (`PaymentMethodID`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Dumping data for table `payment_method`
 --
@@ -344,18 +349,6 @@ ALTER TABLE `guest`
   ADD PRIMARY KEY (`GuestID`);
 
 --
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`PaymentID`);
-
---
--- Indexes for table `payment_method`
---
-ALTER TABLE `payment_method`
-  ADD PRIMARY KEY (`PaymentMethodID`);
-
---
 -- Indexes for table `promotion_setup`
 --
 ALTER TABLE `promotion_setup`
@@ -368,17 +361,7 @@ ALTER TABLE `reservation`
   ADD PRIMARY KEY (`ReservationID`),
   ADD KEY `BookingNo` (`BookingNo`);
 
---
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reservation`
