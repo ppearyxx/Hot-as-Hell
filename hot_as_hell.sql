@@ -178,7 +178,7 @@ CREATE TABLE `payment` (
   `PaymentID` int(11) NOT NULL,
   `EarnestPayCheck` decimal(10,2) DEFAULT NULL,
   `PaymentMethodID` varchar(5) DEFAULT NULL,
-  `PromotionID` int(11) DEFAULT NULL,
+  `PromotionID` varchar(5) DEFAULT NULL,
   `TotalAmount` decimal(10,2) DEFAULT NULL,
   `EarnestPayDatetime` datetime DEFAULT NULL,
   `TotalPayDatetime` datetime DEFAULT NULL
