@@ -25,6 +25,28 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `booking_details`
+
+CREATE TABLE `guest` (
+  `GuestID` varchar(11) NOT NULL,
+  `FirstName` varchar(30) NOT NULL,
+  `LastName` varchar(30) NOT NULL,
+  `Telephone` varchar(13) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Password` varchar(12) NOT NULL,
+  `NationalID` varchar(13) NOT NULL,
+  `PassportNo` varchar(9) NOT NULL,
+  `DOB` date NOT NULL,
+  `Gender` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `guest`
+  ADD PRIMARY KEY (`GuestID`);
+
+INSERT INTO `guest` (`GuestID`, `FirstName`, `LastName`, `Telephone`, `Email`, `Password`, `NationalID`, `PassportNo`, `DOB`, `Gender`) VALUES
+('GJDBJTH753', 'John', 'Doe', '9876543210', 'JohnDoe@mail.com', 'John24', 'J14578', 'DX87C4', '2015-07-23', 'M'),
+('GJWPSZW12', 'James', 'Woods', '0897655432', 'Jameswoods@gmail.com', 'James12', '98NJ76H', '67BH2SD', '2005-10-12', 'M'),
+('GKBOOFK713', 'Krisha', 'Botadara', '0123456789', 'krishabotadara@gmail.com', 'krisha', '123456', '2R5WX9', '2024-05-02', 'F'),
+('GMLVWCS764', 'Maria', 'Louis', '9876543210', 'maria@mail.com', 'ml980', 'HG7893', '2R5WX9', '2013-07-22', 'F');
 --
 
 CREATE TABLE `booking_details` (
@@ -38,9 +60,12 @@ CREATE TABLE `booking_details` (
   `SpecialRequests` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `booking_details`
---
+ALTER TABLE `booking_details`
+  ADD PRIMARY KEY (`BookingNo`);
+
+ALTER TABLE `booking_details`
+  ADD CONSTRAINT `booking_details_ibfk_1` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_guest_id` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `booking_details` (`BookingNo`, `BookingDate`, `BookingTime`, `GuestID`, `PaymentID`, `AdultCount`, `ChildrenCount`, `SpecialRequests`) VALUES
 ('B133781937', '2024-05-24', '23:41:59', 'GKBOOFK713', 0, 1, 0, ''),
@@ -85,6 +110,10 @@ CREATE TABLE `employee_position` (
 ALTER TABLE `employee_position`
   ADD PRIMARY KEY (`PositionID`);
 
+ALTER TABLE `employee`
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`PositionID`) REFERENCES `employee_position` (`PositionID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 INSERT INTO `employee_position` (`PositionID`, `Position`, `Salary`) VALUES
 ('P001', 'Manager', '250000'),
 ('P002', 'Receptionist', '50000'),
@@ -93,10 +122,6 @@ INSERT INTO `employee_position` (`PositionID`, `Position`, `Salary`) VALUES
 ('P005', 'Assistant Manager', '200000'),
 ('P006', 'Human Resource', '150000'),
 ('P007', 'Housekeeper', '20000');
-
---
--- Dumping data for table `employee`
---
 
 INSERT INTO `employee` (`EmployeeID`, `FirstName`, `LastName`, `PositionID`, `Password`, `Contact`, `DOB`, `Gender`) VALUES
 ('E65070503435', 'John', 'Doe', 'P001', 'JohnDoe378', '+669345678', '1990-05-15', 'M'),
@@ -133,9 +158,8 @@ CREATE TABLE `guest` (
   `Gender` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `guest`
---
+ALTER TABLE `guest`
+  ADD PRIMARY KEY (`GuestID`);
 
 INSERT INTO `guest` (`GuestID`, `FirstName`, `LastName`, `Telephone`, `Email`, `Password`, `NationalID`, `PassportNo`, `DOB`, `Gender`) VALUES
 ('GJDBJTH753', 'John', 'Doe', '9876543210', 'JohnDoe@mail.com', 'John24', 'J14578', 'DX87C4', '2015-07-23', 'M'),
@@ -216,9 +240,8 @@ CREATE TABLE `promotion_setup` (
   `PercentPrice` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `promotion_setup`
---
+ALTER TABLE `promotion_setup`
+  ADD PRIMARY KEY (`PromotionID`);
 
 INSERT INTO `promotion_setup` (`PromotionID`, `PercentPrice`) VALUES
 ('PRO01', 10.00),
@@ -242,9 +265,15 @@ CREATE TABLE `reservation` (
   `CheckOutTime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `reservation`
---
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`ReservationID`),
+  ADD KEY `BookingNo` (`BookingNo`);
+
+ALTER TABLE `reservation`
+  MODIFY `ReservationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`BookingNo`) REFERENCES `booking_details` (`BookingNo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `reservation` (`ReservationID`, `BookingNo`, `RoomID`, `CheckInDate`, `CheckInTime`, `CheckOutDate`, `CheckOutTime`) VALUES
 (57, 'B22756248', 'R1003', '2024-05-28', '14:03:00', '2024-05-29', '11:10:00'),
@@ -322,63 +351,11 @@ INSERT INTO `room` (`RoomID`, `RoomType`, `EmployeeID`, `RoomStatus`) VALUES
 ('R1020', 'SUI', 'E65070503445', 'Not Available');
 
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `booking_details`
---
-ALTER TABLE `booking_details`
-  ADD PRIMARY KEY (`BookingNo`);
-
---
---
-
-
---
--- Indexes for table `guest`
---
-ALTER TABLE `guest`
-  ADD PRIMARY KEY (`GuestID`);
-
---
--- Indexes for table `promotion_setup`
---
-ALTER TABLE `promotion_setup`
-  ADD PRIMARY KEY (`PromotionID`);
-
---
--- Indexes for table `reservation`
---
-ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`ReservationID`),
-  ADD KEY `BookingNo` (`BookingNo`);
 
 
 
---
--- AUTO_INCREMENT for table `reservation`
---
-ALTER TABLE `reservation`
-  MODIFY `ReservationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `booking_details`
---
-ALTER TABLE `booking_details`
-  ADD CONSTRAINT `booking_details_ibfk_1` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_guest_id` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`GuestID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `employee`
---
-ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`PositionID`) REFERENCES `employee_position` (`PositionID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reservation`
